@@ -1,2 +1,15 @@
 https://github.com/kimwang1978/collect-txt/raw/refs/heads/main/bbxx.txt
 https://github.com/Supprise0901/TVBox_live/raw/refs/heads/main/live.txt
+https://github.com/mytv-android/China-TV-Live-M3U8/raw/refs/heads/main/iptv.m3u
+https://github.com/skddyj/iptv/raw/refs/heads/main/IPTV.m3u
+https://github.com/hujingguang/ChinaIPTV/raw/refs/heads/main/cnTV_AutoUpdate.m3u8
+https://github.com/Rivens7/Livelist/raw/refs/heads/main/IPTV.m3u
+https://github.com/Supprise0901/TVBox_live/raw/refs/heads/main/live.txt
+https://github.com/ffmking/tv1/raw/refs/heads/main/888.txt
+https://github.com/0610840119/iptv-api/raw/refs/heads/master/output/xp_result.txt
+https://github.com/Ethan-Men/8159-TV/raw/refs/heads/master/output/user_result.txt
+https://github.com/mavin521/syiptv/raw/refs/heads/main/live.m3u
+https://github.com/mavin521/syiptv/raw/refs/heads/main/migu.m3u
+https://github.com/mavin521/syiptv/raw/refs/heads/main/sports.m3u
+https://github.com/kilvn/iptv/raw/refs/heads/master/iptv+.m3u
+https://github.com/cs3306/IPTV-Sources/raw/refs/heads/main/data/output/iptv_collection.m3u
