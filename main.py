@@ -51,6 +51,23 @@ mtv_lines = []  # MTV
 migu_lines = []  # 咪咕直播
 other_lines = []  # 其他频道（新增）
 
+# 新增国际频道分类
+jp_lines = []  # 日本频道 [citation:4]
+kr_lines = []  # 韩国频道 [citation:9]
+us_lines = []  # 美国频道 [citation:7]
+fr_lines = []  # 法国频道 [citation:6]
+uk_lines = []  # 英国频道
+de_lines = []  # 德国频道
+ru_lines = []  # 俄罗斯频道
+ca_lines = []  # 加拿大频道
+au_lines = []  # 澳大利亚频道
+in_lines = []  # 印度频道
+ph_lines = []  # 菲律宾频道
+sg_lines = []  # 新加坡频道
+my_lines = []  # 马来西亚频道
+th_lines = []  # 泰国频道
+vn_lines = []  # 越南频道
+
 # 地方台
 sh_lines = []  # 地方台-上海频道
 zj_lines = []  # 地方台-浙江频道
@@ -107,6 +124,23 @@ radio_dictionary = read_txt_to_array('主频道/收音机频道.txt')
 zb_dictionary = read_txt_to_array('主频道/直播中国.txt')
 mtv_dictionary = read_txt_to_array('主频道/MTV.txt')
 migu_dictionary = read_txt_to_array('主频道/咪咕直播.txt')
+
+# 新增国际频道字典 [citation:1][citation:3][citation:4]
+jp_dictionary = read_txt_to_array('主频道/日本频道.txt')  # NHK, 富士电视台, 东京电视台等 [citation:4]
+kr_dictionary = read_txt_to_array('主频道/韩国频道.txt')  # KBS, MBC, SBS等 [citation:9]
+us_dictionary = read_txt_to_array('主频道/美国频道.txt')  # NBC, CBS, ABC, Fox, CNN, HBO等 [citation:7]
+fr_dictionary = read_txt_to_array('主频道/法国频道.txt')  # TF1, France 2, M6等 [citation:6]
+uk_dictionary = read_txt_to_array('主频道/英国频道.txt')  # BBC, Sky News, ITV等
+de_dictionary = read_txt_to_array('主频道/德国频道.txt')  # ARD, ZDF, RTL等
+ru_dictionary = read_txt_to_array('主频道/俄罗斯频道.txt')  # 第一频道, 俄罗斯24, NTV等
+ca_dictionary = read_txt_to_array('主频道/加拿大频道.txt')  # CBC, CTV, Global等
+au_dictionary = read_txt_to_array('主频道/澳大利亚频道.txt')  # ABC, SBS, Seven Network等
+in_dictionary = read_txt_to_array('主频道/印度频道.txt')  # DD National, Star Plus, Zee TV等
+ph_dictionary = read_txt_to_array('主频道/菲律宾频道.txt')  # ABS-CBN, GMA, TV5等
+sg_dictionary = read_txt_to_array('主频道/新加坡频道.txt')  # Channel 5, Channel 8, CNA等
+my_dictionary = read_txt_to_array('主频道/马来西亚频道.txt')  # TV3, Astro Awani, Bernama TV等
+th_dictionary = read_txt_to_array('主频道/泰国频道.txt')  # Channel 7, Thai PBS, PPTV等
+vn_dictionary = read_txt_to_array('主频道/越南频道.txt')  # VTV1, VTV3, HTV等
 
 # 地方台
 sh_dictionary = read_txt_to_array('地方台/上海频道.txt')
@@ -335,6 +369,40 @@ def process_channel_line(line):
             mtv_lines.append(line)
         elif channel_name in migu_dictionary:
             migu_lines.append(line)
+            
+        # 新增国际频道分类 [citation:1][citation:3][citation:4]
+        elif channel_name in jp_dictionary:
+            jp_lines.append(line)
+        elif channel_name in kr_dictionary:
+            kr_lines.append(line)
+        elif channel_name in us_dictionary:
+            us_lines.append(line)
+        elif channel_name in fr_dictionary:
+            fr_lines.append(line)
+        elif channel_name in uk_dictionary:
+            uk_lines.append(line)
+        elif channel_name in de_dictionary:
+            de_lines.append(line)
+        elif channel_name in ru_dictionary:
+            ru_lines.append(line)
+        elif channel_name in ca_dictionary:
+            ca_lines.append(line)
+        elif channel_name in au_dictionary:
+            au_lines.append(line)
+        elif channel_name in in_dictionary:
+            in_lines.append(line)
+        elif channel_name in ph_dictionary:
+            ph_lines.append(line)
+        elif channel_name in sg_dictionary:
+            sg_lines.append(line)
+        elif channel_name in my_dictionary:
+            my_lines.append(line)
+        elif channel_name in th_dictionary:
+            th_lines.append(line)
+        elif channel_name in vn_dictionary:
+            vn_lines.append(line)
+            
+        # 地方台分类
         elif channel_name in sh_dictionary:
             sh_lines.append(line)
         elif channel_name in zj_dictionary:
@@ -465,67 +533,10 @@ def sort_data(order, data):
     
     return sorted(data, key=sort_key)
 
-# 添加其他分类标题
-other_lines.append("其他,#genre#")
-
 # 处理所有URL源
 for url in urls:
     if url.startswith("http"):
         process_url(url)
-
-# 添加指定的频道列表（如果不存在）
-additional_channels = [
-    "2025春晚",
-    "4K",
-    "AKTV",
-    "about",
-    "p3p",
-    "♪sports",
-    "♪专享源①",
-    "♪专享源②",
-    "♪优质卫视",
-    "♪优质央视",
-    "♪优质源",
-    "♪儿童专享",
-    "♪台湾台",
-    "♪咪咕直播",
-    "♪定制源",
-    "♪港澳台",
-    "♪电影点播",
-    "♪电视剧",
-    "♪英语频道"
-]
-
-# 添加到相应分类（如果不存在）
-def add_to_category(channel, category):
-    """添加频道到指定分类（如果不存在）"""
-    for line in category:
-        if line.startswith(channel + ","):
-            return  # 已存在，跳过
-    # 添加到分类
-    category.append(f"{channel},http://placeholder.com/{channel}")  # 使用占位URL
-    print(f"添加频道: {channel} 到分类")
-
-# 添加频道到相应分类
-add_to_category("2025春晚", cw_lines)
-add_to_category("4K", other_lines)
-add_to_category("AKTV", other_lines)
-add_to_category("about", other_lines)
-add_to_category("p3p", other_lines)
-add_to_category("♪sports", ty_lines)
-add_to_category("♪专享源①", other_lines)
-add_to_category("♪专享源②", other_lines)
-add_to_category("♪优质卫视", ws_lines)
-add_to_category("♪优质央视", ys_lines)
-add_to_category("♪优质源", other_lines)
-add_to_category("♪儿童专享", et_lines)
-add_to_category("♪台湾台", gat_lines)
-add_to_category("♪咪咕直播", migu_lines)
-add_to_category("♪定制源", other_lines)
-add_to_category("♪港澳台", gat_lines)
-add_to_category("♪电影点播", dy_lines)
-add_to_category("♪电视剧", dsj_lines)
-add_to_category("♪英语频道", gj_lines)
 
 # 生成时间戳
 utc_time = datetime.now(timezone.utc)
@@ -533,63 +544,99 @@ beijing_time = utc_time + timedelta(hours=8)
 formatted_time = beijing_time.strftime("%Y%m%d %H:%M")
 version = f"{formatted_time},https://gcalic.v.myalicdn.com/gc/wgw05_1/index.m3u8?contentid=2820180516001"
 
-# 构建完整频道列表
+# 构建完整频道列表（只包含有频道的分类）
 all_lines = [
-    "更新时间,#genre#", version, '',
-    "央视频道,#genre#", *sort_data(ys_dictionary, ys_lines), '',
-    "卫视频道,#genre#", *sort_data(ws_dictionary, ws_lines), '',
-    "港澳台,#genre#", *sort_data(gat_dictionary, gat_lines), '',
-    "电影频道,#genre#", *sort_data(dy_dictionary, dy_lines), '',
-    "电视剧频道,#genre#", *sort_data(dsj_dictionary, dsj_lines), '',
-    "综艺频道,#genre#", *sort_data(zy_dictionary, zy_lines), '',
-    "NewTV,#genre#", *sort_data(newtv_dictionary, newtv_lines), '',
-    "iHOT,#genre#", *sort_data(ihot_dictionary, ihot_lines), '',
-    "体育频道,#genre#", *sort_data(ty_dictionary, ty_lines), '',
-    "咪咕直播,#genre#", *sort_data(migu_dictionary, migu_lines), '',
-    "埋堆堆,#genre#", *sort_data(mdd_dictionary, mdd_lines), '',
-    "音乐频道,#genre#", *sorted(yy_lines), '',
-    "游戏频道,#genre#", *sorted(game_lines), '',
-    "解说频道,#genre#", *sorted(js_lines), '',
-    "儿童,#genre#", *sort_data(et_dictionary, et_lines), '',
-    "国际台,#genre#", *sort_data(gj_dictionary, gj_lines), '',
-    "纪录片,#genre#", *sort_data(jlp_dictionary, jlp_lines), '',
-    "戏曲频道,#genre#", *sort_data(xq_dictionary, xq_lines), '',
-    "上海频道,#genre#", *sort_data(sh_dictionary, sh_lines), '',
-    "湖南频道,#genre#", *sort_data(hn_dictionary, hn_lines), '',
-    "湖北频道,#genre#", *sort_data(hb_dictionary, hb_lines), '',
-    "广东频道,#genre#", *sort_data(gd_dictionary, gd_lines), '',
-    "浙江频道,#genre#", *sort_data(zj_dictionary, zj_lines), '',
-    "山东频道,#genre#", *sort_data(shandong_dictionary, shandong_lines), '',
-    "江苏频道,#genre#", *sorted(jsu_lines), '',
-    "安徽频道,#genre#", *sorted(ah_lines), '',
-    "海南频道,#genre#", *sorted(hain_lines), '',
-    "内蒙频道,#genre#", *sorted(nm_lines), '',
-    "辽宁频道,#genre#", *sorted(ln_lines), '',
-    "陕西频道,#genre#", *sorted(sx_lines), '',
-    "山西频道,#genre#", *sorted(shanxi_lines), '',
-    "云南频道,#genre#", *sorted(yunnan_lines), '',
-    "北京频道,#genre#", *sorted(bj_lines), '',
-    "重庆频道,#genre#", *sorted(cq_lines), '',
-    "福建频道,#genre#", *sorted(fj_lines), '',
-    "甘肃频道,#genre#", *sorted(gs_lines), '',
-    "广西频道,#genre#", *sorted(gx_lines), '',
-    "贵州频道,#genre#", *sorted(gz_lines), '',
-    "河北频道,#genre#", *sorted(heb_lines), '',
-    "河南频道,#genre#", *sorted(hen_lines), '',
-    "黑龙江频道,#genre#", *sorted(hlj_lines), '',
-    "吉林频道,#genre#", *sorted(jl_lines), '',
-    "江西频道,#genre#", *sorted(jx_lines), '',
-    "宁夏频道,#genre#", *sorted(nx_lines), '',
-    "青海频道,#genre#", *sorted(qh_lines), '',
-    "四川频道,#genre#", *sorted(sc_lines), '',
-    "天津频道,#genre#", *sorted(tj_lines), '',
-    "新疆频道,#genre#", *sorted(xj_lines), '',
-    "春晚,#genre#", *sort_data(cw_dictionary, cw_lines), '',
-    "直播中国,#genre#", *sorted(zb_lines), '',
-    "MTV,#genre#", *sorted(mtv_lines), '',
-    "收音机频道,#genre#", *sort_data(radio_dictionary, radio_lines), '',
-    "其他,#genre#", *sorted(other_lines)  # 新增其他分类
+    "更新时间,#genre#", version, ''
 ]
+
+# 按分类添加频道（只添加有频道的分类）
+def add_category(category_name, lines_list, dictionary=None):
+    """添加分类到最终列表（如果分类中有频道）"""
+    if lines_list:
+        all_lines.append(f"{category_name},#genre#")
+        if dictionary:
+            all_lines.extend(sort_data(dictionary, lines_list))
+        else:
+            all_lines.extend(sorted(lines_list))
+        all_lines.append('')
+
+# 添加主频道分类
+add_category("央视频道", ys_lines, ys_dictionary)
+add_category("卫视频道", ws_lines, ws_dictionary)
+add_category("港澳台", gat_lines, gat_dictionary)
+add_category("电影频道", dy_lines, dy_dictionary)
+add_category("电视剧频道", dsj_lines, dsj_dictionary)
+add_category("综艺频道", zy_lines, zy_dictionary)
+add_category("NewTV", newtv_lines, newtv_dictionary)
+add_category("iHOT", ihot_lines, ihot_dictionary)
+add_category("体育频道", ty_lines, ty_dictionary)
+add_category("咪咕直播", migu_lines, migu_dictionary)
+add_category("埋堆堆", mdd_lines, mdd_dictionary)
+add_category("音乐频道", yy_lines)
+add_category("游戏频道", game_lines)
+add_category("解说频道", js_lines)
+add_category("儿童", et_lines, et_dictionary)
+add_category("国际台", gj_lines, gj_dictionary)
+
+# 添加国际频道分类 [citation:1][citation:3][citation:4]
+add_category("日本频道", jp_lines, jp_dictionary)  # NHK, 富士电视台等 [citation:4]
+add_category("韩国频道", kr_lines, kr_dictionary)  # KBS, MBC等 [citation:9]
+add_category("美国频道", us_lines, us_dictionary)  # NBC, CBS, ABC等 [citation:7]
+add_category("法国频道", fr_lines, fr_dictionary)  # TF1, France 2等 [citation:6]
+add_category("英国频道", uk_lines, uk_dictionary)
+add_category("德国频道", de_lines, de_dictionary)
+add_category("俄罗斯频道", ru_lines, ru_dictionary)
+add_category("加拿大频道", ca_lines, ca_dictionary)
+add_category("澳大利亚频道", au_lines, au_dictionary)
+add_category("印度频道", in_lines, in_dictionary)
+add_category("菲律宾频道", ph_lines, ph_dictionary)
+add_category("新加坡频道", sg_lines, sg_dictionary)
+add_category("马来西亚频道", my_lines, my_dictionary)
+add_category("泰国频道", th_lines, th_dictionary)
+add_category("越南频道", vn_lines, vn_dictionary)
+
+add_category("纪录片", jlp_lines, jlp_dictionary)
+add_category("戏曲频道", xq_lines, xq_dictionary)
+
+# 添加地方台分类
+add_category("上海频道", sh_lines, sh_dictionary)
+add_category("湖南频道", hn_lines, hn_dictionary)
+add_category("湖北频道", hb_lines, hb_dictionary)
+add_category("广东频道", gd_lines, gd_dictionary)
+add_category("浙江频道", zj_lines, zj_dictionary)
+add_category("山东频道", shandong_lines, shandong_dictionary)
+add_category("江苏频道", jsu_lines)
+add_category("安徽频道", ah_lines)
+add_category("海南频道", hain_lines)
+add_category("内蒙频道", nm_lines)
+add_category("辽宁频道", ln_lines)
+add_category("陕西频道", sx_lines)
+add_category("山西频道", shanxi_lines)
+add_category("云南频道", yunnan_lines)
+add_category("北京频道", bj_lines)
+add_category("重庆频道", cq_lines)
+add_category("福建频道", fj_lines)
+add_category("甘肃频道", gs_lines)
+add_category("广西频道", gx_lines)
+add_category("贵州频道", gz_lines)
+add_category("河北频道", heb_lines)
+add_category("河南频道", hen_lines)
+add_category("黑龙江频道", hlj_lines)
+add_category("吉林频道", jl_lines)
+add_category("江西频道", jx_lines)
+add_category("宁夏频道", nx_lines)
+add_category("青海频道", qh_lines)
+add_category("四川频道", sc_lines)
+add_category("天津频道", tj_lines)
+add_category("新疆频道", xj_lines)
+
+add_category("春晚", cw_lines, cw_dictionary)
+add_category("直播中国", zb_lines)
+add_category("MTV", mtv_lines)
+add_category("收音机频道", radio_lines, radio_dictionary)
+
+# 添加其他频道分类（如果有内容）
+add_category("其他", other_lines)
 
 # 生成M3U文件
 def make_m3u(txt_content, m3u_file):
@@ -642,5 +689,6 @@ print(f"执行时间: {minutes}分{seconds}秒")
 print(f"央视频道: {len(ys_lines)}")
 print(f"卫视频道: {len(ws_lines)}")
 print(f"港澳台频道: {len(gat_lines)}")
+print(f"国际频道: {len(jp_lines)+len(kr_lines)+len(us_lines)+len(fr_lines)}")
 print(f"其他频道: {len(other_lines)}")
 print(f"总频道数: {len(all_lines)}")
