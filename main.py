@@ -473,6 +473,60 @@ for url in urls:
     if url.startswith("http"):
         process_url(url)
 
+# 添加指定的频道列表（如果不存在）
+additional_channels = [
+    "2025春晚",
+    "4K",
+    "AKTV",
+    "about",
+    "p3p",
+    "♪sports",
+    "♪专享源①",
+    "♪专享源②",
+    "♪优质卫视",
+    "♪优质央视",
+    "♪优质源",
+    "♪儿童专享",
+    "♪台湾台",
+    "♪咪咕直播",
+    "♪定制源",
+    "♪港澳台",
+    "♪电影点播",
+    "♪电视剧",
+    "♪英语频道"
+]
+
+# 添加到相应分类（如果不存在）
+def add_to_category(channel, category):
+    """添加频道到指定分类（如果不存在）"""
+    for line in category:
+        if line.startswith(channel + ","):
+            return  # 已存在，跳过
+    # 添加到分类
+    category.append(f"{channel},http://placeholder.com/{channel}")  # 使用占位URL
+    print(f"添加频道: {channel} 到分类")
+
+# 添加频道到相应分类
+add_to_category("2025春晚", cw_lines)
+add_to_category("4K", other_lines)
+add_to_category("AKTV", other_lines)
+add_to_category("about", other_lines)
+add_to_category("p3p", other_lines)
+add_to_category("♪sports", ty_lines)
+add_to_category("♪专享源①", other_lines)
+add_to_category("♪专享源②", other_lines)
+add_to_category("♪优质卫视", ws_lines)
+add_to_category("♪优质央视", ys_lines)
+add_to_category("♪优质源", other_lines)
+add_to_category("♪儿童专享", et_lines)
+add_to_category("♪台湾台", gat_lines)
+add_to_category("♪咪咕直播", migu_lines)
+add_to_category("♪定制源", other_lines)
+add_to_category("♪港澳台", gat_lines)
+add_to_category("♪电影点播", dy_lines)
+add_to_category("♪电视剧", dsj_lines)
+add_to_category("♪英语频道", gj_lines)
+
 # 生成时间戳
 utc_time = datetime.now(timezone.utc)
 beijing_time = utc_time + timedelta(hours=8)
