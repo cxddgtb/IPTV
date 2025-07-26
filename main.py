@@ -14,9 +14,6 @@ from bs4 import BeautifulSoup
 # 执行开始时间
 timestart = datetime.now()
 
-# 全局频道记录，确保每个频道只出现在一个分类
-global_channel_records = {}
-
 # 读取文本方法
 def read_txt_to_array(file_name):
     """读取文本文件到数组"""
@@ -114,8 +111,8 @@ xs_lines = []  # 相声频道
 ak_lines = []  # AKtv频道
 sg_english_lines = []  # 新加坡式英语频道
 
-# ========== 完整的频道字典 ==========
-# 央视频道
+# ========== 更全面的频道字典 ==========
+# 主频道
 ys_dictionary = [
     "CCTV1综合", "CCTV2财经", "CCTV3综艺", "CCTV4中文国际", "CCTV5体育", "CCTV5+体育赛事", "CCTV6电影", 
     "CCTV7国防军事", "CCTV8电视剧", "CCTV9纪录", "CCTV10科教", "CCTV11戏曲", "CCTV12社会与法", 
@@ -125,7 +122,6 @@ ys_dictionary = [
     "CCTV电视指南", "CCTV卫生健康", "CCTV中学生", "CCTV老故事", "CCTV发现之旅", "CCTV央视文化精品"
 ]
 
-# 卫视频道
 ws_dictionary = [
     "北京卫视", "湖南卫视", "浙江卫视", "东方卫视", "江苏卫视", "天津卫视", "山东卫视", "广东卫视", 
     "深圳卫视", "黑龙江卫视", "辽宁卫视", "安徽卫视", "河南卫视", "湖北卫视", "四川卫视", "重庆卫视", 
@@ -134,7 +130,6 @@ ws_dictionary = [
     "厦门卫视", "海峡卫视", "兵团卫视", "三沙卫视", "延边卫视", "康巴卫视", "安多卫视", "旅游卫视"
 ]
 
-# 体育频道
 ty_dictionary = [
     "CCTV5体育", "CCTV5+体育赛事", "广东体育", "五星体育", "北京体育休闲", "劲爆体育", "全纪实", 
     "足球频道", "篮球频道", "高尔夫网球频道", "冬奥纪实", "体育赛事", "ESPN", "卫视体育台", 
@@ -143,7 +138,6 @@ ty_dictionary = [
     "企鹅体育", "直播吧"
 ]
 
-# 电影频道
 dy_dictionary = [
     "CCTV6电影", "CHC家庭影院", "CHC动作电影", "CHC高清电影", "好莱坞电影", "动作电影", "喜剧电影", 
     "爱情电影", "科幻电影", "恐怖电影", "经典电影", "4K电影", "卫视电影", "星空电影", "龙华电影", 
@@ -152,7 +146,6 @@ dy_dictionary = [
     "4K超高清电影", "3D电影", "怀旧电影", "奥斯卡电影", "金马奖电影", "戛纳电影", "柏林电影"
 ]
 
-# 电视剧频道
 dsj_dictionary = [
     "CCTV8电视剧", "湖南卫视金鹰独播剧场", "浙江卫视中国蓝剧场", "东方卫视东方剧场", "江苏卫视幸福剧场", 
     "北京卫视品质剧场", "安徽卫视海豚剧场", "山东卫视花漾剧场", "天津卫视快乐生活剧场", "江西卫视金牌剧场", 
@@ -163,7 +156,6 @@ dsj_dictionary = [
     "美剧频道", "泰剧频道", "港剧频道", "台剧频道"
 ]
 
-# 港澳台频道
 gat_dictionary = [
     "凤凰卫视中文台", "凤凰卫视资讯台", "凤凰卫视香港台", "凤凰卫视电影台", "星空卫视", "澳视澳门台", 
     "澳视体育台", "澳视高清台", "澳视综艺台", "香港卫视", "香港财经资讯台", "香港国际财经台", 
@@ -173,19 +165,16 @@ gat_dictionary = [
     "香港奇妙电视", "香港RTHK31", "香港RTHK32", "澳门TDM澳视葡文", "澳门TDM澳门", "澳门TDM资讯"
 ]
 
-# 国际台
 gj_dictionary = [
     "CNN美国有线电视新闻网", "BBC英国广播公司", "NHK日本放送协会", "KBS韩国广播公司", "MBC文化广播公司", 
     "SBS首尔广播公司", "TVB无线电视", "ABC美国广播公司", "NBC全国广播公司", "FOX福克斯广播公司", 
-    "HBO家庭票房", "Showtime", "Starz", "Cinemax", "AMC", "FX", "USA", "TNT", "TBS", "ESPN",
-    "Disney Channel", "Nickelodeon", "Cartoon Network", "Comedy Central", "MTV", "VH1", 
-    "BET", "Lifetime", "A&E", "History", "Discovery", "National Geographic", "Animal Planet",
-    "TLC", "Food Network", "HGTV", "Travel Channel", "Syfy", "Bravo", "E!", "HSN", "QVC",
-    "Weather Channel", "C-SPAN", "Bloomberg TV", "Fox Business", "CNBC World", "BBC America",
-    "Telemundo", "Univision"
+    "HBO家庭票房", "Discovery探索频道", "国家地理频道", "历史频道", "CNBC财经电视台", "DW德国之声", 
+    "France24法国24小时", "RT今日俄罗斯", "AlJazeera半岛电视台", "ArirangTV阿里郎电视台", "DW Documentary",
+    "Euronews", "Bloomberg TV", "Fox Sports", "Sky News", "Al Arabiya", "TV5Monde", "RAI意大利广播电视",
+    "ZDF德国电视二台", "ARD德国电视一台", "TF1法国电视一台", "RTL德国", "ProSieben德国", "TVE西班牙",
+    "RTP葡萄牙", "SVT瑞典", "NRK挪威", "DR丹麦", "YLE芬兰", "RTE爱尔兰", "TVP波兰", "RTR俄罗斯"
 ]
 
-# 纪录片频道
 jlp_dictionary = [
     "CCTV9纪录", "CGTN纪录", "Discovery探索频道", "国家地理", "历史频道", "BBC Earth", "动物星球", 
     "全纪实", "求索纪录", "金鹰纪实", "世界地理", "寰宇地理", "爱奇艺纪录片", "优酷纪录片", "腾讯纪录片", 
@@ -194,7 +183,6 @@ jlp_dictionary = [
     "人物纪录", "事件纪录", "考古纪录", "宇宙纪录", "海洋纪录", "野生动物", "环保纪录", "健康纪录"
 ]
 
-# 戏曲频道
 xq_dictionary = [
     "CCTV11戏曲", "梨园频道", "七彩戏剧", "欢笑剧场", "央视戏曲", "河南戏曲", "陕西戏曲", "安徽戏曲", 
     "山西戏曲", "河北戏曲", "天津戏曲", "北京戏曲", "江苏戏曲", "浙江戏曲", "福建戏曲", "广东戏曲", 
@@ -203,7 +191,6 @@ xq_dictionary = [
     "汉剧频道", "湘剧频道", "赣剧频道", "闽剧频道", "桂剧频道", "滇剧频道", "藏剧频道", "少数民族戏曲"
 ]
 
-# 解说频道
 js_dictionary = [
     "体育解说", "电竞解说", "足球解说", "篮球解说", "赛车解说", "围棋解说", "象棋解说", "电竞直播", 
     "游戏解说", "赛事分析", "电竞分析", "体育评论", "游戏评论", "电竞评论", "体育脱口秀", "游戏脱口秀", 
@@ -212,7 +199,6 @@ js_dictionary = [
     "奥运会解说", "世界杯解说", "欧洲杯解说", "亚运会解说", "电竞大赛解说", "游戏大赛解说", "体育综艺解说"
 ]
 
-# 春晚频道
 cw_dictionary = [
     "春晚回放", "历年春晚", "春晚集锦", "春晚特别节目", "春晚倒计时", "春晚预告", "春晚花絮", 
     "春晚彩排", "春晚幕后", "春晚采访", "央视春晚", "卫视春晚", "网络春晚", "春晚精选", "春晚经典", 
@@ -220,7 +206,6 @@ cw_dictionary = [
     "春晚观众", "春晚服装", "春晚舞台", "春晚技术", "春晚历史", "春晚文化", "春晚故事", "春晚记忆"
 ]
 
-# NewTV频道
 newtv_dictionary = [
     "NewTV动作电影", "NewTV家庭影院", "NewTV爱情喜剧", "NewTV惊悚悬疑", "NewTV古装剧场", 
     "NewTV军旅剧场", "NewTV乡村剧场", "NewTV都市剧场", "NewTV少儿动画", "NewTV精品体育", 
@@ -230,7 +215,6 @@ newtv_dictionary = [
     "NewTV科技", "NewTV财经"
 ]
 
-# iHot频道
 ihot_dictionary = [
     "iHot动作", "iHot喜剧", "iHot爱情", "iHot科幻", "iHot恐怖", "iHot战争", "iHot武侠", 
     "iHot警匪", "iHot悬疑", "iHot动漫", "iHot综艺", "iHot体育", "iHot音乐", "iHot纪录片", 
@@ -239,7 +223,6 @@ ihot_dictionary = [
     "iHot文化", "iHot国际"
 ]
 
-# 儿童频道
 et_dictionary = [
     "CCTV14少儿", "卡酷少儿", "金鹰卡通", "优漫卡通", "嘉佳卡通", "炫动卡通", "哈哈炫动", 
     "宝贝家", "少儿动画", "动漫秀场", "卡通剧场", "动漫世界", "少儿剧场", "亲子频道", 
@@ -249,7 +232,6 @@ et_dictionary = [
     "哆啦A梦", "名侦探柯南", "海贼王", "火影忍者", "国产动画", "日本动画", "欧美动画"
 ]
 
-# 综艺频道
 zy_dictionary = [
     "CCTV3综艺", "湖南卫视", "浙江卫视", "东方卫视", "江苏卫视", "北京卫视", "安徽卫视", 
     "山东卫视", "天津卫视", "江西卫视", "深圳卫视", "广西卫视", "四川卫视", "重庆卫视", 
@@ -259,7 +241,6 @@ zy_dictionary = [
     "文化综艺", "益智综艺", "脱口秀", "晚会盛典", "颁奖典礼"
 ]
 
-# 埋堆堆频道
 mdd_dictionary = [
     "埋堆堆粤语", "埋堆堆港剧", "埋堆堆综艺", "埋堆堆电影", "埋堆堆动画", "埋堆堆音乐", 
     "埋堆堆娱乐", "埋堆堆新闻", "埋堆堆体育", "埋堆堆纪录片", "埋堆堆经典", "埋堆堆新剧",
@@ -268,7 +249,6 @@ mdd_dictionary = [
     "埋堆堆商战", "埋堆堆宫斗", "埋堆堆奇幻", "埋堆堆穿越", "埋堆堆历史", "埋堆堆民国"
 ]
 
-# 音乐频道
 yy_dictionary = [
     "CCTV15音乐", "MTV", "ChannelV", "音乐风云榜", "流行音乐", "经典音乐", "摇滚音乐", 
     "爵士音乐", "古典音乐", "民族音乐", "K歌频道", "演唱会", "音乐现场", "音乐资讯", 
@@ -278,7 +258,6 @@ yy_dictionary = [
     "金曲捞", "我想和你唱", "中国音乐电视", "全球中文音乐榜上榜", "音乐盛典"
 ]
 
-# 游戏频道
 game_dictionary = [
     "游戏风云", "电竞天堂", "斗鱼游戏", "虎牙游戏", "企鹅电竞", "网易CC", "战旗TV", "火猫TV", 
     "熊猫游戏", "游戏竞技", "网游天地", "单机游戏", "手游直播", "主机游戏", "电竞新闻", 
@@ -288,7 +267,6 @@ game_dictionary = [
     "拳皇", "主机游戏"
 ]
 
-# 收音机频道
 radio_dictionary = [
     "中国之声", "经济之声", "音乐之声", "经典音乐", "台海之声", "神州之声", "大湾区之声", 
     "民族之声", "文艺之声", "老年之声", "藏语广播", "阅读之声", "维吾尔语广播", "香港之声", 
@@ -301,7 +279,6 @@ radio_dictionary = [
     "内蒙古交通广播"
 ]
 
-# 直播中国频道
 zb_dictionary = [
     "直播中国", "中国直播", "现场直播", "直播现场", "实时直播", "直播新闻", "直播体育", 
     "直播娱乐", "直播音乐", "直播游戏", "直播旅游", "直播美食", "直播购物", "直播教育", 
@@ -311,7 +288,6 @@ zb_dictionary = [
     "直播展会", "直播演出", "直播比赛", "直播课堂", "直播讲座"
 ]
 
-# MTV频道
 mtv_dictionary = [
     "MTV中文", "MTV国际", "MTV音乐", "MTV现场", "MTV经典", "MTV流行", "MTV摇滚", 
     "MTV舞曲", "MTV嘻哈", "MTV亚洲", "MTV欧美", "MTV日韩", "MTV华语", "MTV排行榜", 
@@ -320,7 +296,6 @@ mtv_dictionary = [
     "MTV音乐故事", "MTV音乐现场"
 ]
 
-# 咪咕直播频道
 migu_dictionary = [
     "咪咕视频", "咪咕体育", "咪咕影院", "咪咕动漫", "咪咕综艺", "咪咕音乐", "咪咕游戏", 
     "咪咕直播", "咪咕剧场", "咪咕纪实", "咪咕少儿", "咪咕健康", "咪咕教育", "咪咕购物", 
@@ -330,7 +305,6 @@ migu_dictionary = [
 ]
 
 # ========== 国际频道字典 ==========
-# 日本频道
 jp_dictionary = [
     "NHK综合", "NHK教育", "NHKBS1", "NHKBS4K", "NHKBS8K", "日本电视台", "朝日电视台", 
     "TBS电视台", "东京电视台", "富士电视台", "WOWOW", "BS朝日", "BS东京", "BS-TBS", 
@@ -340,7 +314,6 @@ jp_dictionary = [
     "神奈川TV", "千叶TV", "埼玉TV", "京都TV", "奈良TV", "和歌山TV", "山口TV"
 ]
 
-# 韩国频道
 kr_dictionary = [
     "KBS1", "KBS2", "KBSWorld", "MBC", "SBS", "EBS", "MBN", "TV朝鲜", "JTBC", "ChannelA",
     "YTN", "Arirang", "KBS드라마", "KBSN스포츠", "MBC드라마", "SBS플러스", "SBS골프", 
@@ -350,7 +323,6 @@ kr_dictionary = [
     "MBC Sports+", "SBS MTV", "SBS CNBC", "YTN Science", "YTN DMB", "YTN Radio"
 ]
 
-# 美国频道
 us_dictionary = [
     "ABC", "CBS", "NBC", "FOX", "CW", "PBS", "CNN", "Fox News", "MSNBC", "CNBC",
     "HBO", "Showtime", "Starz", "Cinemax", "AMC", "FX", "USA", "TNT", "TBS", "ESPN",
@@ -361,7 +333,6 @@ us_dictionary = [
     "Telemundo", "Univision"
 ]
 
-# 法国频道
 fr_dictionary = [
     "TF1", "France 2", "France 3", "France 4", "France 5", "M6", "Arte", "C8", "W9", "TMC",
     "TFX", "NRJ 12", "LCP", "BFMTV", "CNews", "France Info", "Gulli", "France 24", "TV5Monde", 
@@ -372,7 +343,6 @@ fr_dictionary = [
     "Trace Gospel", "Trace TV", "Trace Urban Brasil", "Trace Mziki", "Trace Naija"
 ]
 
-# 英国频道
 uk_dictionary = [
     "BBC One", "BBC Two", "BBC Three", "BBC Four", "BBC News", "BBC Parliament", "CBBC", "CBeebies", 
     "ITV", "Channel 4", "Channel 5", "Sky News", "Sky Sports", "Sky Cinema", "Sky Atlantic", 
@@ -383,7 +353,6 @@ uk_dictionary = [
     "BBC World News", "Al Jazeera English", "France 24 English", "RT UK", "S4C", "STV", "UTV"
 ]
 
-# 德国频道
 de_dictionary = [
     "Das Erste", "ZDF", "RTL", "Sat.1", "ProSieben", "VOX", "Kabel Eins", "RTL II", "Super RTL", 
     "n-tv", "Phoenix", "Arte", "3sat", "KiKA", "Disney Channel", "MTV", "VIVA", "Sport1", "Eurosport", 
@@ -394,7 +363,6 @@ de_dictionary = [
     "RTL Living", "RTL Passion", "Sat.1 Gold", "ProSieben MAXX", "kabel eins Doku", "kabel eins classics"
 ]
 
-# 俄罗斯频道
 ru_dictionary = [
     "Первый канал", "Россия 1", "Матч ТВ", "НТВ", "Пятый канал", "Россия К", "Россия 24", 
     "Карусель", "ОТР", "ТВ Центр", "Рен ТВ", "Спас", "СТС", "Домашний", "ТВ-3", "Звезда", 
@@ -405,7 +373,6 @@ ru_dictionary = [
     "Nickelodeon", "Boomerang", "Discovery Channel", "National Geographic", "Animal Planet", "Viasat Nature"
 ]
 
-# 加拿大频道
 ca_dictionary = [
     "CBC", "CTV", "Global", "Citytv", "Omni", "TVO", "TFO", "Radio-Canada", "Télé-Québec", 
     "CPAC", "CBC News Network", "CTV News Channel", "Global News", "The Weather Network", 
@@ -417,7 +384,6 @@ ca_dictionary = [
     "Bravo", "CTV Drama", "CTV Life", "CTV Comedy", "CBC Gem", "Crave", "Club Illico", "Tou.tv"
 ]
 
-# 澳大利亚频道
 au_dictionary = [
     "ABC", "SBS", "Seven Network", "Nine Network", "Network Ten", "ABC News", "SBS News", 
     "7 News", "9 News", "10 News", "ABC Kids", "ABC ME", "ABC TV Plus", "SBS Food", 
@@ -430,7 +396,6 @@ au_dictionary = [
     "Fox Netball", "Fox Motorsport", "Fox Basketball", "Fox Baseball", "Fox Soccer", "Fox Rugby"
 ]
 
-# 印度频道
 in_dictionary = [
     "DD National", "DD News", "DD India", "DD Retro", "DD Urdu", "DD Kisan", "DD Chandana", 
     "Sony", "Star Plus", "Zee TV", "Colors", "Sun TV", "Vijay", "Asianet", "ETV", "ABP News", 
@@ -444,7 +409,6 @@ in_dictionary = [
     "ETV Telangana", "Gemini TV", "Gemini Movies", "Gemini Music", "Gemini Life", "Gemini Comedy"
 ]
 
-# 菲律宾频道
 ph_dictionary = [
     "ABS-CBN", "GMA", "TV5", "CNN Philippines", "ANC", "PTV", "IBC", "UNTV", "NET25", "SMNI News",
     "TAP", "Cine Mo", "A2Z", "GTV", "Heart of Asia", "Hallypop", "I Heart Movies", "Pinoy Box Office",
@@ -455,7 +419,6 @@ ph_dictionary = [
     "Solar Learning", "Solar News Channel", "DepEd TV", "Knowledge Channel", "Yey", "O Shopping", "CT"
 ]
 
-# 新加坡频道
 sg_dictionary = [
     "Channel 5", "Channel 8", "Channel U", "Suria", "Vasantham", "CNA", "Okto", "Channel NewsAsia",
     "BBC Knowledge", "BBC Lifestyle", "FOX", "HBO", "Star World", "AXN", "Animax", "Disney", 
@@ -467,7 +430,6 @@ sg_dictionary = [
     "Eurosport", "Premier Football", "WWE Network", "KIX", "HITS", "HITS Movies", "Celestial Movies"
 ]
 
-# 马来西亚频道
 my_dictionary = [
     "RTM1", "RTM2", "TV3", "NTV7", "8TV", "TV9", "Astro Awani", "Bernama TV", "TV Alhijrah", 
     "TV Okey", "TV Sukan", "TV IQ", "TV Berita", "TV Bual", "TV Filem", "TV Hiburan", "TV Pendidikan",
@@ -479,7 +441,6 @@ my_dictionary = [
     "Nickelodeon", "Discovery", "Animal Planet", "History", "National Geographic", "Nat Geo Wild", "BBC Earth"
 ]
 
-# 泰国频道
 th_dictionary = [
     "Channel 7", "Channel 3", "Channel 5", "Channel 8", "Channel 9", "NBT", "Thai PBS", "PPTV", 
     "Workpoint", "GMM25", "One 31", "Amarin TV", "TNN24", "Spring News", "Voice TV", "JKN18", 
@@ -490,7 +451,6 @@ th_dictionary = [
     "Ch3 SD", "Ch5 SD", "Ch8 SD", "Ch9 SD", "Thai PBS SD"
 ]
 
-# 越南频道
 vn_dictionary = [
     "VTV1", "VTV2", "VTV3", "VTV4", "VTV5", "VTV6", "VTV7", "VTV8", "VTV9", "HTV1",
     "HTV2", "HTV3", "HTV4", "HTV7", "HTV9", "THVL1", "THVL2", "QPVN", "Hanoi TV", "Hai Phong TV",
@@ -501,8 +461,7 @@ vn_dictionary = [
     "Lam Dong TV", "Binh Phuoc TV", "Tay Ninh TV", "Binh Thuan TV", "Ba Ria Vung Tau TV", "Long An TV"
 ]
 
-# ========== 地方台字典 ==========
-# 上海频道
+# 地方台
 sh_dictionary = [
     "东方卫视", "上海新闻综合", "上海都市", "上海东方影视", "上海娱乐", "上海电视剧", "上海纪实", 
     "上海外语", "上海哈哈炫动", "上海第一财经", "上海五星体育", "上海艺术人文", "上海生活时尚", 
@@ -512,7 +471,6 @@ sh_dictionary = [
     "上海崇明新闻", "上海移动电视", "上海地铁电视", "上海公交电视", "上海楼宇电视", "上海户外大屏"
 ]
 
-# 浙江频道
 zj_dictionary = [
     "浙江卫视", "浙江钱江都市", "浙江经济生活", "浙江教育科技", "浙江影视娱乐", "浙江民生休闲", 
     "浙江公共新闻", "浙江少儿", "浙江国际", "杭州综合", "杭州西湖明珠", "杭州生活", "杭州影视", 
@@ -523,7 +481,6 @@ zj_dictionary = [
     "金华公共", "金华影视", "金华都市", "衢州新闻", "衢州公共", "衢州影视", "衢州教育", "衢州文化"
 ]
 
-# 江苏频道
 jsu_dictionary = [
     "江苏卫视", "江苏城市", "江苏综艺", "江苏影视", "江苏公共新闻", "江苏教育", "江苏体育休闲", 
     "江苏国际", "南京新闻", "南京教科", "南京娱乐", "南京生活", "南京影视", "南京少儿", "南京十八",
@@ -534,7 +491,6 @@ jsu_dictionary = [
     "徐州都市", "徐州影视", "徐州生活", "徐州教育"
 ]
 
-# 广东频道
 gd_dictionary = [
     "广东卫视", "珠江台", "广东体育", "广东新闻", "广东公共", "广东经济科教", "广东影视", "广东少儿", 
     "广东国际", "南方卫视", "深圳卫视", "深圳都市", "深圳电视剧", "深圳娱乐", "深圳体育健康", 
@@ -545,7 +501,6 @@ gd_dictionary = [
     "惠州教育", "汕头新闻", "汕头公共", "汕头影视", "汕头生活", "汕头教育"
 ]
 
-# 湖南频道
 hn_dictionary = [
     "湖南卫视", "湖南经视", "湖南都市", "湖南娱乐", "湖南电视剧", "湖南公共", "湖南国际", "湖南教育", 
     "长沙新闻", "长沙政法", "长沙女性", "长沙经贸", "长沙移动", "湘潭新闻", "株洲新闻", "衡阳新闻", 
@@ -556,7 +511,6 @@ hn_dictionary = [
     "怀化影视", "娄底影视", "湘西影视"
 ]
 
-# 安徽频道
 ah_dictionary = [
     "安徽卫视", "安徽经视", "安徽公共", "安徽影视", "安徽综艺", "安徽农业科教", "安徽国际", 
     "合肥新闻", "合肥生活", "合肥教育", "合肥财经", "芜湖新闻", "蚌埠新闻", "淮南新闻", "马鞍山新闻", 
@@ -567,7 +521,6 @@ ah_dictionary = [
     "淮北影视", "铜陵影视", "安庆影视", "黄山影视"
 ]
 
-# 海南频道
 hain_dictionary = [
     "海南卫视", "海南综合", "海南文旅", "海南公共", "海南影视", "海南少儿", "海口新闻", "海口生活", 
     "海口娱乐", "三亚新闻", "三亚生活", "三沙卫视", "琼海新闻", "儋州新闻", "文昌新闻", "万宁新闻", 
@@ -578,7 +531,6 @@ hain_dictionary = [
     "琼海影视", "儋州影视"
 ]
 
-# 内蒙频道
 nm_dictionary = [
     "内蒙古卫视", "内蒙古蒙语", "内蒙古新闻", "内蒙古经济", "内蒙古影视", "内蒙古少儿", "呼和浩特新闻", 
     "包头新闻", "呼伦贝尔新闻", "兴安盟新闻", "通辽新闻", "赤峰新闻", "锡林郭勒新闻", "乌兰察布新闻", 
@@ -590,7 +542,6 @@ nm_dictionary = [
     "赤峰少儿", "锡林郭勒少儿", "乌兰察布少儿"
 ]
 
-# 湖北频道
 hb_dictionary = [
     "湖北卫视", "湖北综合", "湖北经视", "湖北影视", "湖北教育", "湖北生活", "湖北公共", "湖北垄上", 
     "武汉新闻", "武汉电视剧", "武汉文体", "武汉外语", "武汉少儿", "武汉教育", "黄石新闻", "十堰新闻", 
@@ -601,7 +552,6 @@ hb_dictionary = [
     "黄石影视", "十堰影视"
 ]
 
-# 辽宁频道
 ln_dictionary = [
     "辽宁卫视", "辽宁都市", "辽宁影视", "辽宁生活", "辽宁公共", "辽宁教育", "辽宁体育", "辽宁经济", 
     "沈阳新闻", "沈阳公共", "沈阳影视", "大连新闻", "大连公共", "大连文体", "大连影视", "鞍山新闻", 
@@ -612,7 +562,6 @@ ln_dictionary = [
     "营口教育", "阜新教育"
 ]
 
-# 陕西频道
 sx_dictionary = [
     "陕西卫视", "陕西新闻", "陕西都市", "陕西影视", "陕西公共", "陕西体育", "陕西生活", "西安新闻", 
     "西安都市", "西安影视", "西安商务", "西安教育", "宝鸡新闻", "咸阳新闻", "渭南新闻", "铜川新闻", 
@@ -623,7 +572,6 @@ sx_dictionary = [
     "汉中教育", "安康教育"
 ]
 
-# 山西频道
 shanxi_dictionary = [
     "山西卫视", "山西新闻", "山西经济", "山西影视", "山西公共", "山西少儿", "山西黄河", "太原新闻", 
     "太原文体", "太原影视", "太原教育", "大同新闻", "阳泉新闻", "长治新闻", "晋城新闻", "朔州新闻", 
@@ -634,7 +582,6 @@ shanxi_dictionary = [
     "朔州少儿", "晋中少儿"
 ]
 
-# 山东频道
 shandong_dictionary = [
     "山东卫视", "山东齐鲁", "山东体育", "山东影视", "山东生活", "山东公共", "山东少儿", "山东国际", 
     "济南新闻", "济南都市", "济南影视", "济南生活", "青岛新闻", "青岛生活", "青岛影视", "青岛都市", 
@@ -645,7 +592,6 @@ shandong_dictionary = [
     "淄博影视", "枣庄影视"
 ]
 
-# 云南频道
 yunnan_dictionary = [
     "云南卫视", "云南都市", "云南娱乐", "云南影视", "云南公共", "云南少儿", "云南国际", "昆明新闻", 
     "昆明春城民生", "昆明影视频道", "曲靖新闻", "玉溪新闻", "保山新闻", "昭通新闻", "丽江新闻", 
@@ -656,7 +602,6 @@ yunnan_dictionary = [
     "普洱影视", "临沧影视"
 ]
 
-# 北京频道
 bj_dictionary = [
     "北京卫视", "北京新闻", "北京财经", "北京影视", "北京科教", "北京生活", "北京文艺", "北京青年", 
     "北京卡酷", "北京纪实", "北京冬奥", "北京国际", "BRTV新闻", "BRTV财经", "BRTV影视", "BRTV生活", 
@@ -667,7 +612,6 @@ bj_dictionary = [
     "BRTV生活", "BRTV财经", "BRTV影视", "BRTV科教", "BRTV文艺", "BRTV青年", "BRTV卡酷", "BRTV纪实"
 ]
 
-# 重庆频道
 cq_dictionary = [
     "重庆卫视", "重庆新闻", "重庆影视", "重庆文体娱乐", "重庆社会法制", "重庆时尚生活", "重庆公共", 
     "重庆少儿", "重庆国际", "万州新闻", "涪陵新闻", "渝中新闻", "大渡口新闻", "江北新闻", "沙坪坝新闻", 
@@ -678,7 +622,6 @@ cq_dictionary = [
     "重庆影视文艺", "重庆时尚生活", "重庆社会与法", "重庆文体娱乐", "重庆少儿"
 ]
 
-# 福建频道
 fj_dictionary = [
     "东南卫视", "福建综合", "福建新闻", "福建电视剧", "福建公共", "福建经济", "福建体育", "福建少儿", 
     "福建国际", "福州新闻", "福州生活", "福州少儿", "福州影视", "厦门卫视", "厦门新闻", "厦门生活", 
@@ -689,7 +632,6 @@ fj_dictionary = [
     "漳州少儿", "南平少儿"
 ]
 
-# 甘肃频道
 gs_dictionary = [
     "甘肃卫视", "甘肃新闻", "甘肃经济", "甘肃文化影视", "甘肃公共", "甘肃少儿", "兰州新闻", "兰州生活", 
     "兰州综艺", "兰州公共", "嘉峪关新闻", "金昌新闻", "白银新闻", "天水新闻", "武威新闻", "张掖新闻", 
@@ -700,7 +642,6 @@ gs_dictionary = [
     "陇南影视", "临夏影视"
 ]
 
-# 广西频道
 gx_dictionary = [
     "广西卫视", "广西新闻", "广西综艺", "广西影视", "广西公共", "广西国际", "南宁新闻", "南宁都市", 
     "南宁影视", "南宁公共", "柳州新闻", "桂林新闻", "梧州新闻", "北海新闻", "防城港新闻", "钦州新闻", 
@@ -711,7 +652,6 @@ gx_dictionary = [
     "河池影视", "来宾影视"
 ]
 
-# 贵州频道
 gz_dictionary = [
     "贵州卫视", "贵州新闻", "贵州公共", "贵州影视", "贵州旅游", "贵州科教", "贵阳新闻", "贵阳生活", 
     "贵阳法制", "贵阳旅游", "贵阳都市", "遵义新闻", "六盘水新闻", "安顺新闻", "毕节新闻", "铜仁新闻", 
@@ -722,7 +662,6 @@ gz_dictionary = [
     "黔西南旅游", "贵安旅游"
 ]
 
-# 河北频道
 heb_dictionary = [
     "河北卫视", "河北经济", "河北影视", "河北都市", "河北公共", "河北少儿", "河北农民", "河北导视", 
     "石家庄新闻", "石家庄娱乐", "石家庄影视", "石家庄生活", "唐山新闻", "秦皇岛新闻", "邯郸新闻", 
@@ -733,7 +672,6 @@ heb_dictionary = [
     "邯郸少儿", "邢台少儿"
 ]
 
-# 河南频道
 hen_dictionary = [
     "河南卫视", "河南新闻", "河南民生", "河南电视剧", "河南公共", "河南国际", "河南法制", "河南教育", 
     "郑州新闻", "郑州都市", "郑州影视", "郑州教育", "郑州文体", "洛阳新闻", "开封新闻", "安阳新闻", 
@@ -744,7 +682,6 @@ hen_dictionary = [
     "开封影视", "安阳影视"
 ]
 
-# 黑龙江频道
 hlj_dictionary = [
     "黑龙江卫视", "黑龙江新闻", "黑龙江都市", "黑龙江影视", "黑龙江公共", "黑龙江少儿", "黑龙江导视", 
     "哈尔滨新闻", "哈尔滨生活", "哈尔滨娱乐", "哈尔滨影视", "哈尔滨都市", "齐齐哈尔新闻", "牡丹江新闻", 
@@ -755,7 +692,6 @@ hlj_dictionary = [
     "鸡西影视", "鹤岗影视", "双鸭山影视", "七台河影视", "绥化影视", "黑河影视"
 ]
 
-# 吉林频道
 jl_dictionary = [
     "吉林卫视", "吉林新闻", "吉林生活", "吉林影视", "吉林公共", "吉林乡村", "吉林教育", "吉林国际", 
     "长春新闻", "长春都市", "长春娱乐", "长春影视", "长春市民", "长春汽车", "吉林市新闻", "四平新闻", 
@@ -766,7 +702,6 @@ jl_dictionary = [
     "延边少儿", "长春教育"
 ]
 
-# 江西频道
 jx_dictionary = [
     "江西卫视", "江西新闻", "江西都市", "江西影视", "江西公共", "江西经济", "江西少儿", "江西教育", 
     "南昌新闻", "南昌都市", "南昌影视", "南昌生活", "景德镇新闻", "萍乡新闻", "九江新闻", "新余新闻", 
@@ -777,7 +712,6 @@ jx_dictionary = [
     "新余少儿", "鹰潭少儿"
 ]
 
-# 宁夏频道
 nx_dictionary = [
     "宁夏卫视", "宁夏公共", "宁夏影视", "宁夏经济", "宁夏少儿", "银川新闻", "银川生活", "银川文体", 
     "石嘴山新闻", "吴忠新闻", "固原新闻", "中卫新闻", "灵武新闻", "青铜峡新闻", "永宁新闻", "贺兰新闻", 
@@ -788,7 +722,6 @@ nx_dictionary = [
     "吴忠少儿", "固原少儿"
 ]
 
-# 青海频道
 qh_dictionary = [
     "青海卫视", "青海新闻", "青海经济", "青海影视", "青海生活", "青海少儿", "青海安多", "西宁新闻", 
     "西宁生活", "海东新闻", "海西新闻", "海南新闻", "海北新闻", "黄南新闻", "果洛新闻", "玉树新闻", 
@@ -799,7 +732,6 @@ qh_dictionary = [
     "海北少儿", "黄南少儿"
 ]
 
-# 四川频道
 sc_dictionary = [
     "四川卫视", "四川新闻", "四川经济", "四川影视", "四川公共", "四川科技", "四川国际", "四川妇女儿童", 
     "成都新闻", "成都经济", "成都影视", "成都公共", "成都少儿", "绵阳新闻", "自贡新闻", "攀枝花新闻", 
@@ -810,7 +742,6 @@ sc_dictionary = [
     "雅安公共", "巴中公共"
 ]
 
-# 天津频道
 tj_dictionary = [
     "天津卫视", "天津新闻", "天津文艺", "天津影视", "天津都市", "天津体育", "天津科教", "天津公共", 
     "天津少儿", "天津国际", "滨海新闻", "滨海都市", "滨海影视", "滨海生活", "滨海少儿", "武清新闻", 
@@ -821,7 +752,6 @@ tj_dictionary = [
     "蓟州少儿", "滨海生活", "武清生活", "宝坻生活", "宁河生活", "静海生活"
 ]
 
-# 新疆频道
 xj_dictionary = [
     "新疆卫视", "新疆汉语", "新疆维语", "新疆哈语", "新疆少儿", "新疆经济", "新疆影视", "新疆体育", 
     "乌鲁木齐新闻", "乌鲁木齐维语", "乌鲁木齐哈语", "克拉玛依新闻", "吐鲁番新闻", "哈密新闻", 
@@ -833,7 +763,6 @@ xj_dictionary = [
 ]
 
 # ========== 新增娱乐类型频道字典 ==========
-# 娱乐综合频道
 yl_dictionary = [
     "湖南娱乐", "东方娱乐", "江苏综艺", "浙江娱乐", "北京文艺", "安徽综艺", "山东综艺", "天津文艺",
     "江西娱乐", "深圳娱乐", "广西综艺", "四川文艺", "重庆时尚", "东南娱乐", "贵州影视", "云南娱乐",
@@ -845,7 +774,6 @@ yl_dictionary = [
     "追光吧", "舞蹈风暴", "这！就是街舞", "中国新说唱", "中国有嘻哈", "国风美少年", "声入人心", "天籁之战"
 ]
 
-# 小品频道
 xp_dictionary = [
     "央视小品", "欢乐小品", "喜剧小品", "经典小品", "小品精选", "赵本山小品", "宋小宝小品", "沈腾小品",
     "贾玲小品", "岳云鹏小品", "陈佩斯小品", "朱时茂小品", "潘长江小品", "蔡明小品", "冯巩小品", "黄宏小品",
@@ -856,7 +784,6 @@ xp_dictionary = [
     "欢乐星期四", "欢乐星期五", "欢乐星期六", "欢乐星期天"
 ]
 
-# 相声频道
 xs_dictionary = [
     "央视相声", "德云社", "相声大会", "经典相声", "相声精选", "郭德纲相声", "于谦相声", "岳云鹏相声",
     "孙越相声", "郭麒麟相声", "孟鹤堂相声", "周九良相声", "张云雷相声", "杨九郎相声", "烧饼相声", "曹鹤阳相声",
@@ -867,7 +794,6 @@ xs_dictionary = [
     "相声排行榜", "相声热榜", "相声热搜", "相声推荐"
 ]
 
-# AKtv频道
 ak_dictionary = [
     "AKtv综合", "AKtv电影", "AKtv电视剧", "AKtv综艺", "AKtv动漫", "AKtv音乐", "AKtv体育", "AKtv新闻",
     "AKtv财经", "AKtv纪录片", "AKtv娱乐", "AKtv少儿", "AKtv生活", "AKtv时尚", "AKtv旅游", "AKtv美食",
@@ -878,7 +804,6 @@ ak_dictionary = [
     "AKtv云", "AKtv会员", "AKtvVIP", "AKtv白金", "AKtv钻石", "AKtv黄金", "AKtv铂金", "AKtv至尊"
 ]
 
-# 新加坡式英语频道
 sg_english_dictionary = [
     "新加坡英语", "Singlish频道", "新加坡娱乐", "新加坡新闻", "新加坡电影", "新加坡电视剧", "新加坡综艺",
     "新加坡音乐", "新加坡文化", "狮城频道", "新传媒", "Channel 5", "Channel 8", "Channel U", "CNA",
@@ -1093,141 +1018,168 @@ def process_channel_line(line):
         channel_name = clean_channel_name(channel_name, removal_list)  # 清理特殊字符
         channel_name = correct_name_data(channel_name).strip()  # 应用纠错
         
-        # 检查是否已处理过该频道
-        if channel_name in global_channel_records:
-            # print(f"频道已存在，跳过: {channel_name}")
-            return
-        
         # 测速检查（严格模式）
         response_time = check_speed(channel_address)
         if response_time == -1 or response_time > 2000:  # 超过2秒视为无效
             print(f"源测速失败或超时: {channel_name} ({response_time}ms)")
             return
         
-        # 记录已处理的频道
-        global_channel_records[channel_name] = True
-        
         # 重新构建行
         line = f"{channel_name},{channel_address}"
         
         # 根据频道名称分发到不同分类
-        matched = False
-        
-        # 主频道分类
-        for category, dictionary, lines in [
-            ("央视频道", ys_dictionary, ys_lines),
-            ("卫视频道", ws_dictionary, ws_lines),
-            ("港澳台", gat_dictionary, gat_lines),
-            ("电影频道", dy_dictionary, dy_lines),
-            ("电视剧频道", dsj_dictionary, dsj_lines),
-            ("综艺频道", zy_dictionary, zy_lines),
-            ("NewTV", newtv_dictionary, newtv_lines),
-            ("iHOT", ihot_dictionary, ihot_lines),
-            ("体育频道", ty_dictionary, ty_lines),
-            ("咪咕直播", migu_dictionary, migu_lines),
-            ("埋堆堆", mdd_dictionary, mdd_lines),
-            ("音乐频道", yy_dictionary, yy_lines),
-            ("游戏频道", game_dictionary, game_lines),
-            ("解说频道", js_dictionary, js_lines),
-            ("儿童", et_dictionary, et_lines),
-            ("国际台", gj_dictionary, gj_lines),
-            ("纪录片", jlp_dictionary, jlp_lines),
-            ("戏曲频道", xq_dictionary, xq_lines),
-            ("春晚", cw_dictionary, cw_lines),
-            ("直播中国", zb_dictionary, zb_lines),
-            ("MTV", mtv_dictionary, mtv_lines),
-            ("收音机频道", radio_dictionary, radio_lines)
-        ]:
-            if channel_name in dictionary:
-                lines.append(line)
-                matched = True
-                break
-        
-        if matched:
-            return
-        
+        if channel_name in ys_dictionary:
+            ys_lines.append(line)
+        elif channel_name in ws_dictionary:
+            ws_lines.append(line)
+        elif channel_name in ty_dictionary:
+            ty_lines.append(line)
+        elif channel_name in dy_dictionary:
+            dy_lines.append(line)
+        elif channel_name in dsj_dictionary:
+            dsj_lines.append(line)
+        elif channel_name in gat_dictionary:
+            gat_lines.append(line)
+        elif channel_name in gj_dictionary:
+            gj_lines.append(line)
+        elif channel_name in jlp_dictionary:
+            jlp_lines.append(line)
+        elif channel_name in xq_dictionary:
+            xq_lines.append(line)
+        elif channel_name in js_dictionary:
+            js_lines.append(line)
+        elif channel_name in newtv_dictionary:
+            newtv_lines.append(line)
+        elif channel_name in ihot_dictionary:
+            ihot_lines.append(line)
+        elif channel_name in et_dictionary:
+            et_lines.append(line)
+        elif channel_name in zy_dictionary:
+            zy_lines.append(line)
+        elif channel_name in mdd_dictionary:
+            mdd_lines.append(line)
+        elif channel_name in yy_dictionary:
+            yy_lines.append(line)
+        elif channel_name in game_dictionary:
+            game_lines.append(line)
+        elif channel_name in radio_dictionary:
+            radio_lines.append(line)
+        elif channel_name in zb_dictionary:
+            zb_lines.append(line)
+        elif channel_name in cw_dictionary:
+            cw_lines.append(line)
+        elif channel_name in mtv_dictionary:
+            mtv_lines.append(line)
+        elif channel_name in migu_dictionary:
+            migu_lines.append(line)
+            
         # 国际频道分类
-        for category, dictionary, lines in [
-            ("日本频道", jp_dictionary, jp_lines),
-            ("韩国频道", kr_dictionary, kr_lines),
-            ("美国频道", us_dictionary, us_lines),
-            ("法国频道", fr_dictionary, fr_lines),
-            ("英国频道", uk_dictionary, uk_lines),
-            ("德国频道", de_dictionary, de_lines),
-            ("俄罗斯频道", ru_dictionary, ru_lines),
-            ("加拿大频道", ca_dictionary, ca_lines),
-            ("澳大利亚频道", au_dictionary, au_lines),
-            ("印度频道", in_dictionary, in_lines),
-            ("菲律宾频道", ph_dictionary, ph_lines),
-            ("新加坡频道", sg_dictionary, sg_lines),
-            ("马来西亚频道", my_dictionary, my_lines),
-            ("泰国频道", th_dictionary, th_lines),
-            ("越南频道", vn_dictionary, vn_lines)
-        ]:
-            if channel_name in dictionary:
-                lines.append(line)
-                matched = True
-                break
-        
-        if matched:
-            return
-        
+        elif channel_name in jp_dictionary:
+            jp_lines.append(line)
+        elif channel_name in kr_dictionary:
+            kr_lines.append(line)
+        elif channel_name in us_dictionary:
+            us_lines.append(line)
+        elif channel_name in fr_dictionary:
+            fr_lines.append(line)
+        elif channel_name in uk_dictionary:
+            uk_lines.append(line)
+        elif channel_name in de_dictionary:
+            de_lines.append(line)
+        elif channel_name in ru_dictionary:
+            ru_lines.append(line)
+        elif channel_name in ca_dictionary:
+            ca_lines.append(line)
+        elif channel_name in au_dictionary:
+            au_lines.append(line)
+        elif channel_name in in_dictionary:
+            in_lines.append(line)
+        elif channel_name in ph_dictionary:
+            ph_lines.append(line)
+        elif channel_name in sg_dictionary:
+            sg_lines.append(line)
+        elif channel_name in my_dictionary:
+            my_lines.append(line)
+        elif channel_name in th_dictionary:
+            th_lines.append(line)
+        elif channel_name in vn_dictionary:
+            vn_lines.append(line)
+            
         # 地方台分类
-        for category, dictionary, lines in [
-            ("上海频道", sh_dictionary, sh_lines),
-            ("浙江频道", zj_dictionary, zj_lines),
-            ("江苏频道", jsu_dictionary, jsu_lines),
-            ("广东频道", gd_dictionary, gd_lines),
-            ("湖南频道", hn_dictionary, hn_lines),
-            ("安徽频道", ah_dictionary, ah_lines),
-            ("海南频道", hain_dictionary, hain_lines),
-            ("内蒙频道", nm_dictionary, nm_lines),
-            ("湖北频道", hb_dictionary, hb_lines),
-            ("辽宁频道", ln_dictionary, ln_lines),
-            ("陕西频道", sx_dictionary, sx_lines),
-            ("山西频道", shanxi_dictionary, shanxi_lines),
-            ("山东频道", shandong_dictionary, shandong_lines),
-            ("云南频道", yunnan_dictionary, yunnan_lines),
-            ("北京频道", bj_dictionary, bj_lines),
-            ("重庆频道", cq_dictionary, cq_lines),
-            ("福建频道", fj_dictionary, fj_lines),
-            ("甘肃频道", gs_dictionary, gs_lines),
-            ("广西频道", gx_dictionary, gx_lines),
-            ("贵州频道", gz_dictionary, gz_lines),
-            ("河北频道", heb_dictionary, heb_lines),
-            ("河南频道", hen_dictionary, hen_lines),
-            ("黑龙江频道", hlj_dictionary, hlj_lines),
-            ("吉林频道", jl_dictionary, jl_lines),
-            ("江西频道", jx_dictionary, jx_lines),
-            ("宁夏频道", nx_dictionary, nx_lines),
-            ("青海频道", qh_dictionary, qh_lines),
-            ("四川频道", sc_dictionary, sc_lines),
-            ("天津频道", tj_dictionary, tj_lines),
-            ("新疆频道", xj_dictionary, xj_lines)
-        ]:
-            if channel_name in dictionary:
-                lines.append(line)
-                matched = True
-                break
-        
-        if matched:
-            return
-        
-        # 娱乐类型分类
-        for category, dictionary, lines in [
-            ("娱乐综合", yl_dictionary, yl_lines),
-            ("小品天地", xp_dictionary, xp_lines),
-            ("相声精选", xs_dictionary, xs_lines),
-            ("AKtv频道", ak_dictionary, ak_lines),
-            ("新加坡英语", sg_english_dictionary, sg_english_lines)
-        ]:
-            if channel_name in dictionary:
-                lines.append(line)
-                matched = True
-                break
-        
-        # 如果以上都不匹配，添加到其他频道
-        if not matched:
+        elif channel_name in sh_dictionary:
+            sh_lines.append(line)
+        elif channel_name in zj_dictionary:
+            zj_lines.append(line)
+        elif channel_name in jsu_dictionary:
+            jsu_lines.append(line)
+        elif channel_name in gd_dictionary:
+            gd_lines.append(line)
+        elif channel_name in hn_dictionary:
+            hn_lines.append(line)
+        elif channel_name in ah_dictionary:
+            ah_lines.append(line)
+        elif channel_name in hain_dictionary:
+            hain_lines.append(line)
+        elif channel_name in nm_dictionary:
+            nm_lines.append(line)
+        elif channel_name in hb_dictionary:
+            hb_lines.append(line)
+        elif channel_name in ln_dictionary:
+            ln_lines.append(line)
+        elif channel_name in sx_dictionary:
+            sx_lines.append(line)
+        elif channel_name in shanxi_dictionary:
+            shanxi_lines.append(line)
+        elif channel_name in shandong_dictionary:
+            shandong_lines.append(line)
+        elif channel_name in yunnan_dictionary:
+            yunnan_lines.append(line)
+        elif channel_name in bj_dictionary:
+            bj_lines.append(line)
+        elif channel_name in cq_dictionary:
+            cq_lines.append(line)
+        elif channel_name in fj_dictionary:
+            fj_lines.append(line)
+        elif channel_name in gs_dictionary:
+            gs_lines.append(line)
+        elif channel_name in gx_dictionary:
+            gx_lines.append(line)
+        elif channel_name in gz_dictionary:
+            gz_lines.append(line)
+        elif channel_name in heb_dictionary:
+            heb_lines.append(line)
+        elif channel_name in hen_dictionary:
+            hen_lines.append(line)
+        elif channel_name in hlj_dictionary:
+            hlj_lines.append(line)
+        elif channel_name in jl_dictionary:
+            jl_lines.append(line)
+        elif channel_name in jx_dictionary:
+            jx_lines.append(line)
+        elif channel_name in nx_dictionary:
+            nx_lines.append(line)
+        elif channel_name in qh_dictionary:
+            qh_lines.append(line)
+        elif channel_name in sc_dictionary:
+            sc_lines.append(line)
+        elif channel_name in tj_dictionary:
+            tj_lines.append(line)
+        elif channel_name in xj_dictionary:
+            xj_lines.append(line)
+            
+        # ========== 新增娱乐类型分类 ==========
+        elif channel_name in yl_dictionary:
+            yl_lines.append(line)
+        elif channel_name in xp_dictionary:
+            xp_lines.append(line)
+        elif channel_name in xs_dictionary:
+            xs_lines.append(line)
+        elif channel_name in ak_dictionary:
+            ak_lines.append(line)
+        elif channel_name in sg_english_dictionary:
+            sg_english_lines.append(line)
+        else:
+            # 添加到"其他"分类
             other_lines.append(line)
 
 # 处理URL源
@@ -1347,17 +1299,11 @@ add_category("iHOT", ihot_lines, ihot_dictionary)
 add_category("体育频道", ty_lines, ty_dictionary)
 add_category("咪咕直播", migu_lines, migu_dictionary)
 add_category("埋堆堆", mdd_lines, mdd_dictionary)
-add_category("音乐频道", yy_lines, yy_dictionary)
-add_category("游戏频道", game_lines, game_dictionary)
-add_category("解说频道", js_lines, js_dictionary)
+add_category("音乐频道", yy_lines)
+add_category("游戏频道", game_lines)
+add_category("解说频道", js_lines)
 add_category("儿童", et_lines, et_dictionary)
 add_category("国际台", gj_lines, gj_dictionary)
-add_category("纪录片", jlp_lines, jlp_dictionary)
-add_category("戏曲频道", xq_lines, xq_dictionary)
-add_category("春晚", cw_lines, cw_dictionary)
-add_category("直播中国", zb_lines, zb_dictionary)
-add_category("MTV", mtv_lines, mtv_dictionary)
-add_category("收音机频道", radio_lines, radio_dictionary)
 
 # 添加国际频道分类
 add_category("日本频道", jp_lines, jp_dictionary)
@@ -1376,37 +1322,45 @@ add_category("马来西亚频道", my_lines, my_dictionary)
 add_category("泰国频道", th_lines, th_dictionary)
 add_category("越南频道", vn_lines, vn_dictionary)
 
+add_category("纪录片", jlp_lines, jlp_dictionary)
+add_category("戏曲频道", xq_lines, xq_dictionary)
+
 # 添加地方台分类
 add_category("上海频道", sh_lines, sh_dictionary)
-add_category("浙江频道", zj_lines, zj_dictionary)
-add_category("江苏频道", jsu_lines, jsu_dictionary)
-add_category("广东频道", gd_lines, gd_dictionary)
 add_category("湖南频道", hn_lines, hn_dictionary)
-add_category("安徽频道", ah_lines, ah_dictionary)
-add_category("海南频道", hain_lines, hain_dictionary)
-add_category("内蒙频道", nm_lines, nm_dictionary)
 add_category("湖北频道", hb_lines, hb_dictionary)
-add_category("辽宁频道", ln_lines, ln_dictionary)
-add_category("陕西频道", sx_lines, sx_dictionary)
-add_category("山西频道", shanxi_lines, shanxi_dictionary)
+add_category("广东频道", gd_lines, gd_dictionary)
+add_category("浙江频道", zj_lines, zj_dictionary)
 add_category("山东频道", shandong_lines, shandong_dictionary)
-add_category("云南频道", yunnan_lines, yunnan_dictionary)
-add_category("北京频道", bj_lines, bj_dictionary)
-add_category("重庆频道", cq_lines, cq_dictionary)
-add_category("福建频道", fj_lines, fj_dictionary)
-add_category("甘肃频道", gs_lines, gs_dictionary)
-add_category("广西频道", gx_lines, gx_dictionary)
-add_category("贵州频道", gz_lines, gz_dictionary)
-add_category("河北频道", heb_lines, heb_dictionary)
-add_category("河南频道", hen_lines, hen_dictionary)
-add_category("黑龙江频道", hlj_lines, hlj_dictionary)
-add_category("吉林频道", jl_lines, jl_dictionary)
-add_category("江西频道", jx_lines, jx_dictionary)
-add_category("宁夏频道", nx_lines, nx_dictionary)
-add_category("青海频道", qh_lines, qh_dictionary)
-add_category("四川频道", sc_lines, sc_dictionary)
-add_category("天津频道", tj_lines, tj_dictionary)
-add_category("新疆频道", xj_lines, xj_dictionary)
+add_category("江苏频道", jsu_lines)
+add_category("安徽频道", ah_lines)
+add_category("海南频道", hain_lines)
+add_category("内蒙频道", nm_lines)
+add_category("辽宁频道", ln_lines)
+add_category("陕西频道", sx_lines)
+add_category("山西频道", shanxi_lines)
+add_category("云南频道", yunnan_lines)
+add_category("北京频道", bj_lines)
+add_category("重庆频道", cq_lines)
+add_category("福建频道", fj_lines)
+add_category("甘肃频道", gs_lines)
+add_category("广西频道", gx_lines)
+add_category("贵州频道", gz_lines)
+add_category("河北频道", heb_lines)
+add_category("河南频道", hen_lines)
+add_category("黑龙江频道", hlj_lines)
+add_category("吉林频道", jl_lines)
+add_category("江西频道", jx_lines)
+add_category("宁夏频道", nx_lines)
+add_category("青海频道", qh_lines)
+add_category("四川频道", sc_lines)
+add_category("天津频道", tj_lines)
+add_category("新疆频道", xj_lines)
+
+add_category("春晚", cw_lines, cw_dictionary)
+add_category("直播中国", zb_lines)
+add_category("MTV", mtv_lines)
+add_category("收音机频道", radio_lines, radio_dictionary)
 
 # ========== 添加新增娱乐类型分类 ==========
 add_category("娱乐综合", yl_lines, yl_dictionary)
