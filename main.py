@@ -67,6 +67,9 @@ sg_lines = []  # 新加坡频道
 my_lines = []  # 马来西亚频道
 th_lines = []  # 泰国频道
 vn_lines = []  # 越南频道
+tw_lines = []  # 台湾频道
+hk_lines = []  # 香港频道
+mo_lines = []  # 澳门频道
 
 # 地方台
 sh_lines = []  # 地方台-上海频道
@@ -99,6 +102,13 @@ qh_lines = []  # 地方台-青海频道
 sc_lines = []  # 地方台-四川频道
 tj_lines = []  # 地方台-天津频道
 xj_lines = []  # 地方台-新疆频道
+sichuan_lines = []  # 地方台-四川频道
+hebei_lines = []  # 地方台-河北频道
+hubei_lines = []  # 地方台-湖北频道
+jilin_lines = []  # 地方台-吉林频道
+liaoning_lines = []  # 地方台-辽宁频道
+shanxi1_lines = []  # 地方台-陕西频道
+shanxi2_lines = []  # 地方台-山西频道
 
 # ========== 新增娱乐类型频道分类 ==========
 yl_lines = []  # 娱乐综合频道
@@ -106,6 +116,81 @@ xp_lines = []  # 小品频道
 xs_lines = []  # 相声频道
 ak_lines = []  # AKtv频道
 sg_english_lines = []  # 新加坡式英语频道
+comedy_lines = []  # 喜剧频道
+music_lines = []  # 音乐频道
+movie_lines = []  # 电影频道
+drama_lines = []  # 电视剧频道
+variety_lines = []  # 综艺频道
+sports_lines = []  # 体育频道
+news_lines = []  # 新闻频道
+education_lines = []  # 教育频道
+kids_lines = []  # 少儿频道
+documentary_lines = []  # 纪录片频道
+anime_lines = []  # 动漫频道
+travel_lines = []  # 旅游频道
+food_lines = []  # 美食频道
+fashion_lines = []  # 时尚频道
+tech_lines = []  # 科技频道
+finance_lines = []  # 财经频道
+auto_lines = []  # 汽车频道
+health_lines = []  # 健康频道
+life_lines = []  # 生活频道
+shopping_lines = []  # 购物频道
+
+# ========== 新增专业频道分类 ==========
+law_lines = []  # 法治频道
+military_lines = []  # 军事频道
+agriculture_lines = []  # 农业频道
+weather_lines = []  # 天气预报频道
+fishing_lines = []  # 钓鱼频道
+golf_lines = []  # 高尔夫频道
+poker_lines = []  # 扑克频道
+chess_lines = []  # 棋牌频道
+lottery_lines = []  # 彩票频道
+stock_lines = []  # 股票频道
+property_lines = []  # 房产频道
+furniture_lines = []  # 家居频道
+interior_lines = []  # 装修频道
+wedding_lines = []  # 婚庆频道
+parenting_lines = []  # 育儿频道
+senior_lines = []  # 老年频道
+discovery_lines = []  # 探索频道
+history_lines = []  # 历史频道
+science_lines = []  # 科学频道
+nature_lines = []  # 自然频道
+animal_lines = []  # 动物频道
+ocean_lines = []  # 海洋频道
+adventure_lines = []  # 探险频道
+extreme_lines = []  # 极限运动频道
+yoga_lines = []  # 瑜伽频道
+fitness_lines = []  # 健身频道
+cooking_lines = []  # 烹饪频道
+gardening_lines = []  # 园艺频道
+diy_lines = []  # DIY频道
+craft_lines = []  # 手工艺频道
+art_lines = []  # 艺术频道
+culture_lines = []  # 文化频道
+religion_lines = []  # 宗教频道
+language_lines = []  # 语言学习频道
+
+# ========== 新增地区频道分类 ==========
+asia_lines = []  # 亚洲频道
+europe_lines = []  # 欧洲频道
+africa_lines = []  # 非洲频道
+america_lines = []  # 美洲频道
+oceania_lines = []  # 大洋洲频道
+middleeast_lines = []  # 中东频道
+southeastasia_lines = []  # 东南亚频道
+northeastasia_lines = []  # 东北亚频道
+southasia_lines = []  # 南亚频道
+centralasia_lines = []  # 中亚频道
+caribbean_lines = []  # 加勒比频道
+mediterranean_lines = []  # 地中海频道
+baltic_lines = []  # 波罗的海频道
+scandinavia_lines = []  # 北欧频道
+balkan_lines = []  # 巴尔干频道
+arab_lines = []  # 阿拉伯频道
+latin_lines = []  # 拉丁美洲频道
 
 # ========== 频道字典直接内联在代码中 ==========
 # 主频道
@@ -296,6 +381,21 @@ vn_dictionary = [
     "HTV2", "HTV3", "HTV4", "HTV7", "HTV9", "THVL1", "THVL2", "QPVN", "HanoiTV", "HaiPhongTV"
 ]
 
+tw_dictionary = [
+    "中视", "中天", "东森", "三立", "TVBS", "民视", "台视", "华视", "公视", "年代",
+    "壹电视", "非凡", "纬来", "龙祥", "卫视", "八大", "高点", "寰宇", "靖天", "爱尔达"
+]
+
+hk_dictionary = [
+    "无线电视", "亚洲电视", "有线电视", "香港电视", "奇妙电视", "香港开电视", "ViuTV", "有线新闻", "有线财经", "有线娱乐",
+    "有线电影", "有线体育", "有线18", "有线儿童", "香港国际", "凤凰卫视", "凤凰资讯", "星空卫视", "澳亚卫视", "华娱卫视"
+]
+
+mo_dictionary = [
+    "澳门卫视", "澳视澳门", "澳视体育", "澳视高清", "澳视综艺", "澳门资讯", "莲花卫视", "澳亚卫视", "澳门有线", "澳广视",
+    "澳门TV", "澳视生活", "澳视新闻", "澳视财经", "澳视娱乐", "澳视电影", "澳视卡通", "澳视音乐", "澳视旅游", "澳视文化"
+]
+
 # 地方台
 sh_dictionary = [
     "东方卫视", "上海新闻综合", "上海都市", "上海东方影视", "上海娱乐", "上海电视剧", "上海纪实", "上海外语", "上海哈哈炫动", "上海第一财经",
@@ -447,6 +547,41 @@ xj_dictionary = [
     "乌鲁木齐哈语", "克拉玛依新闻", "吐鲁番新闻", "哈密新闻", "昌吉新闻", "博尔塔拉新闻", "巴音郭楞新闻", "阿克苏新闻", "克孜勒苏新闻", "喀什新闻"
 ]
 
+sichuan_dictionary = [
+    "四川卫视", "成都新闻", "绵阳新闻", "自贡新闻", "攀枝花新闻", "泸州新闻", "德阳新闻", "广元新闻", "遂宁新闻", "内江新闻",
+    "乐山新闻", "南充新闻", "眉山新闻", "宜宾新闻", "广安新闻", "达州新闻", "雅安新闻", "巴中新闻", "资阳新闻", "阿坝新闻"
+]
+
+hebei_dictionary = [
+    "河北卫视", "石家庄新闻", "唐山新闻", "秦皇岛新闻", "邯郸新闻", "邢台新闻", "保定新闻", "张家口新闻", "承德新闻", "沧州新闻",
+    "廊坊新闻", "衡水新闻", "定州新闻", "辛集新闻", "雄安新闻", "河北经济", "河北影视", "河北都市", "河北公共", "河北少儿"
+]
+
+hubei_dictionary = [
+    "湖北卫视", "武汉新闻", "黄石新闻", "十堰新闻", "宜昌新闻", "襄阳新闻", "鄂州新闻", "荆门新闻", "孝感新闻", "荆州新闻",
+    "黄冈新闻", "咸宁新闻", "随州新闻", "恩施新闻", "仙桃新闻", "潜江新闻", "天门新闻", "神农架新闻", "湖北经视", "湖北影视"
+]
+
+jilin_dictionary = [
+    "吉林卫视", "长春新闻", "吉林市新闻", "四平新闻", "辽源新闻", "通化新闻", "白山新闻", "松原新闻", "白城新闻", "延边新闻",
+    "长春都市", "长春影视", "长春公共", "吉林生活", "吉林影视", "吉林公共", "吉林教育", "吉林国际", "延边卫视", "延边新闻"
+]
+
+liaoning_dictionary = [
+    "辽宁卫视", "沈阳新闻", "大连新闻", "鞍山新闻", "抚顺新闻", "本溪新闻", "丹东新闻", "锦州新闻", "营口新闻", "阜新新闻",
+    "辽阳新闻", "盘锦新闻", "铁岭新闻", "朝阳新闻", "葫芦岛新闻", "辽宁都市", "辽宁影视", "辽宁公共", "辽宁教育", "辽宁体育"
+]
+
+shanxi1_dictionary = [
+    "陕西卫视", "西安新闻", "铜川新闻", "宝鸡新闻", "咸阳新闻", "渭南新闻", "延安新闻", "汉中新闻", "榆林新闻", "安康新闻",
+    "商洛新闻", "陕西新闻", "陕西都市", "陕西影视", "陕西公共", "陕西体育", "陕西生活", "西安都市", "西安影视", "西安公共"
+]
+
+shanxi2_dictionary = [
+    "山西卫视", "太原新闻", "大同新闻", "阳泉新闻", "长治新闻", "晋城新闻", "朔州新闻", "晋中新闻", "运城新闻", "忻州新闻",
+    "临汾新闻", "吕梁新闻", "山西新闻", "山西经济", "山西影视", "山西公共", "山西少儿", "山西黄河", "太原影视", "太原公共"
+]
+
 # ========== 新增娱乐类型频道字典 ==========
 # 娱乐综合频道
 yl_dictionary = [
@@ -488,8 +623,258 @@ sg_english_dictionary = [
     "新加坡教育", "新加坡科技", "新加坡时尚", "新加坡健康", "新加坡生活", "新加坡戏剧", "新加坡卡通"
 ]
 
+# ========== 新增专业频道字典 ==========
+comedy_dictionary = [
+    "喜剧中心", "欢笑剧场", "喜剧精选", "幽默天地", "搞笑频道", "脱口秀频道", "情景喜剧", "喜剧电影",
+    "喜剧综艺", "喜剧俱乐部", "喜剧现场", "喜剧新闻", "喜剧脱口秀", "喜剧访谈", "喜剧小品", "喜剧相声"
+]
+
+music_dictionary = [
+    "MTV", "Channel V", "音乐风云", "流行音乐", "经典音乐", "摇滚音乐", "爵士音乐", "古典音乐",
+    "民族音乐", "K歌频道", "演唱会", "音乐现场", "音乐资讯", "音乐故事", "音乐MV", "音乐排行榜"
+]
+
+movie_dictionary = [
+    "电影频道", "好莱坞电影", "动作电影", "喜剧电影", "爱情电影", "科幻电影", "恐怖电影", "战争电影",
+    "武侠电影", "警匪电影", "悬疑电影", "经典电影", "4K电影", "高清电影", "3D电影", "电影首映"
+]
+
+drama_dictionary = [
+    "电视剧频道", "古装剧", "现代剧", "都市剧", "家庭剧", "言情剧", "悬疑剧", "谍战剧",
+    "历史剧", "战争剧", "警匪剧", "医疗剧", "律政剧", "校园剧", "韩剧", "美剧"
+]
+
+variety_dictionary = [
+    "综艺频道", "真人秀", "选秀节目", "访谈节目", "游戏节目", "美食节目", "旅游节目", "时尚节目",
+    "音乐综艺", "喜剧综艺", "舞蹈综艺", "脱口秀", "晚会节目", "颁奖典礼", "特别节目", "综艺精选"
+]
+
+sports_dictionary = [
+    "体育频道", "足球", "篮球", "网球", "高尔夫", "赛车", "拳击", "格斗",
+    "游泳", "田径", "体操", "羽毛球", "乒乓球", "台球", "电竞", "体育新闻"
+]
+
+news_dictionary = [
+    "新闻频道", "时政新闻", "财经新闻", "国际新闻", "社会新闻", "娱乐新闻", "体育新闻", "科技新闻",
+    "军事新闻", "文化新闻", "健康新闻", "教育新闻", "地方新闻", "24小时新闻", "新闻评论", "新闻访谈"
+]
+
+education_dictionary = [
+    "教育频道", "幼儿教育", "小学教育", "中学教育", "大学教育", "职业教育", "语言学习", "技能培训",
+    "科普教育", "历史教育", "文化教育", "艺术教育", "健康知识", "生活常识", "考试辅导", "公开课"
+]
+
+kids_dictionary = [
+    "少儿频道", "动画片", "儿童剧", "儿歌", "幼儿教育", "亲子节目", "少儿综艺", "少儿新闻",
+    "卡通频道", "动漫世界", "儿童英语", "少儿体育", "少儿科技", "少儿艺术", "少儿健康", "少儿益智"
+]
+
+documentary_dictionary = [
+    "纪录片频道", "自然纪录片", "历史纪录片", "科学纪录片", "文化纪录片", "社会纪录片", "人物纪录片", "地理纪录片",
+    "动物纪录片", "美食纪录片", "旅游纪录片", "军事纪录片", "探索纪录片", "纪实频道", "纪录精选", "纪录电影"
+]
+
+anime_dictionary = [
+    "动漫频道", "国产动漫", "日本动漫", "欧美动漫", "韩国动漫", "经典动漫", "新番动漫", "热血动漫",
+    "搞笑动漫", "科幻动漫", "冒险动漫", "少女动漫", "少年动漫", "成人动漫", "动漫电影", "动漫资讯"
+]
+
+travel_dictionary = [
+    "旅游频道", "国内旅游", "国际旅游", "美食旅游", "文化旅游", "探险旅游", "自驾游", "海岛游",
+    "城市风光", "自然景观", "历史遗迹", "旅游攻略", "旅游资讯", "旅游真人秀", "旅游纪录片", "旅游购物"
+]
+
+food_dictionary = [
+    "美食频道", "中餐", "西餐", "日料", "韩餐", "烘焙", "甜点", "饮品",
+    "美食教程", "美食探店", "美食比赛", "美食纪录片", "健康饮食", "地方美食", "家常菜", "美食文化"
+]
+
+fashion_dictionary = [
+    "时尚频道", "时装秀", "美妆", "发型", "护肤", "珠宝", "配饰", "潮流",
+    "时尚资讯", "时尚评论", "时尚纪录片", "时尚购物", "时尚生活", "时尚艺术", "时尚设计", "时尚名人"
+]
+
+tech_dictionary = [
+    "科技频道", "数码产品", "互联网", "人工智能", "科技创新", "科学探索", "科技新闻", "科技评论",
+    "科技教程", "科技生活", "未来科技", "科技公司", "科技展会", "科技纪录片", "科技访谈", "科技教育"
+]
+
+finance_dictionary = [
+    "财经频道", "股票", "基金", "期货", "外汇", "银行", "保险", "理财",
+    "经济新闻", "财经评论", "商业访谈", "投资指南", "市场分析", "公司财报", "财经纪录片", "财经教育"
+]
+
+auto_dictionary = [
+    "汽车频道", "新车发布", "汽车评测", "汽车保养", "汽车改装", "赛车", "摩托车", "电动车",
+    "汽车新闻", "汽车文化", "汽车展会", "汽车纪录片", "驾驶技巧", "汽车生活", "汽车设计", "汽车科技"
+]
+
+health_dictionary = [
+    "健康频道", "医疗健康", "心理健康", "饮食健康", "运动健康", "中医养生", "西医保健", "老年健康",
+    "妇幼健康", "健康资讯", "健康讲座", "健康纪录片", "健康生活", "健康产品", "健康科技", "健康管理"
+]
+
+life_dictionary = [
+    "生活频道", "家居", "装修", "园艺", "宠物", "亲子", "婚恋", "社交",
+    "生活技巧", "生活百科", "生活资讯", "生活纪录片", "生活真人秀", "生活服务", "生活方式", "生活美学"
+]
+
+shopping_dictionary = [
+    "购物频道", "电视购物", "网络购物", "时尚购物", "家居购物", "数码购物", "美妆购物", "食品购物",
+    "珠宝购物", "健康购物", "儿童购物", "旅游购物", "购物指南", "购物优惠", "购物评论", "购物直播"
+]
+
+# ========== 新增地区频道字典 ==========
+asia_dictionary = [
+    "亚洲卫视", "东亚频道", "东南亚频道", "南亚频道", "中亚频道", "西亚频道", "亚洲新闻", "亚洲文化",
+    "亚洲电影", "亚洲音乐", "亚洲旅游", "亚洲美食", "亚洲时尚", "亚洲科技", "亚洲财经", "亚洲体育"
+]
+
+europe_dictionary = [
+    "欧洲卫视", "西欧频道", "东欧频道", "北欧频道", "南欧频道", "中欧频道", "欧洲新闻", "欧洲文化",
+    "欧洲电影", "欧洲音乐", "欧洲旅游", "欧洲美食", "欧洲时尚", "欧洲科技", "欧洲财经", "欧洲体育"
+]
+
+africa_dictionary = [
+    "非洲卫视", "北非频道", "西非频道", "东非频道", "南非频道", "中非频道", "非洲新闻", "非洲文化",
+    "非洲电影", "非洲音乐", "非洲旅游", "非洲美食", "非洲时尚", "非洲科技", "非洲财经", "非洲体育"
+]
+
+america_dictionary = [
+    "美洲卫视", "北美频道", "南美频道", "中美洲频道", "加勒比频道", "拉丁频道", "美洲新闻", "美洲文化",
+    "美洲电影", "美洲音乐", "美洲旅游", "美洲美食", "美洲时尚", "美洲科技", "美洲财经", "美洲体育"
+]
+
+oceania_dictionary = [
+    "大洋洲卫视", "澳大利亚频道", "新西兰频道", "太平洋频道", "大洋洲新闻", "大洋洲文化", "大洋洲电影",
+    "大洋洲音乐", "大洋洲旅游", "大洋洲美食", "大洋洲时尚", "大洋洲科技", "大洋洲财经", "大洋洲体育"
+]
+
 # 自定义源
 urls = read_txt_to_array('assets/urls.txt')
+
+# ========== URL匹配规则 ==========
+# 每个分类的URL关键词列表（不区分大小写）
+url_patterns = {
+    # 主频道
+    "ys_lines": ["cctv", "cntv", "央视", "cgtn", "央视网"],
+    "ws_lines": ["卫视", "weishi", "stv", "卫视台", "tvstation", "省级卫视"],
+    "ty_lines": ["体育", "sports", "ty", "tiyu", "football", "basketball", "nba", "英超", "西甲"],
+    "dy_lines": ["电影", "movie", "film", "影院", "cinema", "dy", "dianying"],
+    "dsj_lines": ["电视剧", "drama", "tvseries", "剧场", "tvshow", "剧集"],
+    "gat_lines": ["凤凰", "phoenix", "澳门", "macau", "香港", "hk", "hkiff", "viutv", "澳视", "港澳台"],
+    "gj_lines": ["国际", "global", "gj", "foreign", "cnn", "bbc", "nhk", "fox", "hbo", "discovery"],
+    "jlp_lines": ["纪录", "documentary", "docu", "jilu", "jlp", "discovery", "bbc", "ngc"],
+    "xq_lines": ["戏曲", "xiqu", "drama", "opera", "京剧", "粤剧", "黄梅戏"],
+    "js_lines": ["解说", "commentary", "js", "analysis", "解说台", "解说频道"],
+    "newtv_lines": ["newtv", "新视觉", "newtv"],
+    "ihot_lines": ["ihot", "i-hot", "ihot"],
+    "et_lines": ["少儿", "children", "kids", "卡通", "cartoon", "动画", "anime", "baby", "child"],
+    "zy_lines": ["综艺", "variety", "show", "entertainment", "zy", "zongyi"],
+    "mdd_lines": ["埋堆堆", "maiduidui", "mdd", "港剧", "cantonese"],
+    "yy_lines": ["音乐", "music", "mtv", "concert", "yy", "yinyue"],
+    "game_lines": ["游戏", "game", "电竞", "esports", "gaming", "play", "player"],
+    "radio_lines": ["radio", "广播", "fm", "am", "radio", "收音机"],
+    "zb_lines": ["直播", "live", "zhibo", "stream", "直播中"],
+    "cw_lines": ["春晚", "chunwan", "springfestival", "cctvspringgala"],
+    "mtv_lines": ["mtv"],
+    "migu_lines": ["咪咕", "migu", "mg", "咪咕视频"],
+    
+    # 国际频道
+    "jp_lines": ["日本", "japan", "jp", "nhk", "fuji", "tokyo", "nippon", "japanese"],
+    "kr_lines": ["韩国", "korea", "kr", "kbs", "mbc", "sbs", "korean"],
+    "us_lines": ["美国", "usa", "us", "america", "fox", "cnn", "abc", "nbc", "cbs"],
+    "fr_lines": ["法国", "france", "fr", "tf1", "french"],
+    "uk_lines": ["英国", "uk", "british", "bbc", "itv", "channel"],
+    "de_lines": ["德国", "germany", "de", "german", "zdf", "rtl"],
+    "ru_lines": ["俄罗斯", "russia", "ru", "russian", "rt", "nvt"],
+    "ca_lines": ["加拿大", "canada", "ca", "cbc", "ctv"],
+    "au_lines": ["澳大利亚", "australia", "au", "oz", "abcau", "sbs"],
+    "in_lines": ["印度", "india", "in", "indian", "zee", "star"],
+    "ph_lines": ["菲律宾", "philippines", "ph", "filipino", "abs-cbn", "gma"],
+    "sg_lines": ["新加坡", "singapore", "sg", "channel5", "channel8", "cna"],
+    "my_lines": ["马来西亚", "malaysia", "my", "malay", "rtm", "astro"],
+    "th_lines": ["泰国", "thailand", "th", "thai", "channel3", "channel7"],
+    "vn_lines": ["越南", "vietnam", "vn", "viet", "vtv", "htv"],
+    "tw_lines": ["台湾", "taiwan", "tw", "台视", "中视", "华视", "民视", "tvbs"],
+    "hk_lines": ["香港", "hongkong", "hk", "tvb", "viu", "now", "cable", "rthk"],
+    "mo_lines": ["澳门", "macau", "mo", "tvm", "澳视", "澳广视"],
+    
+    # 地方台
+    "sh_lines": ["上海", "shanghai", "sh", "东方", "dragon", "smg", "上海台"],
+    "zj_lines": ["浙江", "zhejiang", "zj", "浙江卫视", "钱江", "杭州", "hangzhou"],
+    "jsu_lines": ["江苏", "jiangsu", "js", "江苏卫视", "南京", "nanjing"],
+    "gd_lines": ["广东", "guangdong", "gd", "广东卫视", "珠江", "广州", "guangzhou", "深圳", "shenzhen"],
+    "hn_lines": ["湖南", "hunan", "hn", "湖南卫视", "芒果", "mango", "长沙"],
+    "ah_lines": ["安徽", "anhui", "ah", "安徽卫视", "合肥", "hefei"],
+    "hain_lines": ["海南", "hainan", "hn", "海南卫视", "海口", "haikou", "三亚", "sanya"],
+    "nm_lines": ["内蒙古", "neimenggu", "nmg", "内蒙古卫视", "呼和浩特", "包头"],
+    "hb_lines": ["湖北", "hubei", "hb", "湖北卫视", "武汉", "wuhan"],
+    "ln_lines": ["辽宁", "liaoning", "ln", "辽宁卫视", "沈阳", "shenyang", "大连", "dalian"],
+    "sx_lines": ["陕西", "shaanxi", "sx", "陕西卫视", "西安", "xian"],
+    "shanxi_lines": ["山西", "shanxi", "sx", "山西卫视", "太原", "taiyuan"],
+    "shandong_lines": ["山东", "shandong", "sd", "山东卫视", "齐鲁", "济南", "jinan", "青岛", "qingdao"],
+    "yunnan_lines": ["云南", "yunnan", "yn", "云南卫视", "昆明", "kunming"],
+    "bj_lines": ["北京", "beijing", "bj", "北京卫视", "北京台", "brtv"],
+    "cq_lines": ["重庆", "chongqing", "cq", "重庆卫视", "重庆台"],
+    "fj_lines": ["福建", "fujian", "fj", "福建卫视", "东南卫视", "厦门", "xiamen", "福州", "fuzhou"],
+    "gs_lines": ["甘肃", "gansu", "gs", "甘肃卫视", "兰州", "lanzhou"],
+    "gx_lines": ["广西", "guangxi", "gx", "广西卫视", "南宁", "nanning"],
+    "gz_lines": ["贵州", "guizhou", "gz", "贵州卫视", "贵阳", "guiyang"],
+    "heb_lines": ["河北", "hebei", "hb", "河北卫视", "石家庄", "shijiazhuang"],
+    "hen_lines": ["河南", "henan", "hn", "河南卫视", "郑州", "zhengzhou"],
+    "hlj_lines": ["黑龙江", "heilongjiang", "hlj", "黑龙江卫视", "哈尔滨", "harbin"],
+    "jl_lines": ["吉林", "jilin", "jl", "吉林卫视", "长春", "changchun"],
+    "jx_lines": ["江西", "jiangxi", "jx", "江西卫视", "南昌", "nanchang"],
+    "nx_lines": ["宁夏", "ningxia", "nx", "宁夏卫视", "银川", "yinchuan"],
+    "qh_lines": ["青海", "qinghai", "qh", "青海卫视", "西宁", "xining"],
+    "sc_lines": ["四川", "sichuan", "sc", "四川卫视", "成都", "chengdu"],
+    "tj_lines": ["天津", "tianjin", "tj", "天津卫视", "天津台"],
+    "xj_lines": ["新疆", "xinjiang", "xj", "新疆卫视", "乌鲁木齐", "urumqi"],
+    "sichuan_lines": ["四川", "sichuan", "sc", "四川地方", "成都", "绵阳", "自贡", "攀枝花", "泸州"],
+    "hebei_lines": ["河北", "hebei", "hb", "河北地方", "石家庄", "唐山", "秦皇岛", "邯郸"],
+    "hubei_lines": ["湖北", "hubei", "hb", "湖北地方", "武汉", "黄石", "十堰", "宜昌"],
+    "jilin_lines": ["吉林", "jilin", "jl", "吉林地方", "长春", "吉林市", "四平", "辽源"],
+    "liaoning_lines": ["辽宁", "liaoning", "ln", "辽宁地方", "沈阳", "大连", "鞍山", "抚顺"],
+    "shanxi1_lines": ["陕西", "shaanxi", "sx", "陕西地方", "西安", "宝鸡", "咸阳", "渭南"],
+    "shanxi2_lines": ["山西", "shanxi", "sx", "山西地方", "太原", "大同", "阳泉", "长治"],
+    
+    # 娱乐类型
+    "yl_lines": ["娱乐", "entertain", "yule", "搞笑", "fun", "humor", "comedy", "快乐", "欢笑"],
+    "xp_lines": ["小品", "sketch", "comedy", "搞笑", "幽默", "赵本山", "宋小宝"],
+    "xs_lines": ["相声", "crosstalk", "xiangsheng", "德云社", "郭德纲", "于谦", "岳云鹏"],
+    "ak_lines": ["aktv", "ak-tv", "ak tv", "ak频道", "ak直播"],
+    "sg_english_lines": ["singlish", "新加坡英语", "sg english", "sgenglish"],
+    
+    # 专业频道
+    "comedy_lines": ["comedy", "喜剧", "搞笑", "humor", "joke"],
+    "music_lines": ["music", "音乐", "yinyue", "mtv", "concert", "song"],
+    "movie_lines": ["movie", "film", "cinema", "影院", "影片", "大片"],
+    "drama_lines": ["drama", "电视剧", "剧集", "tvseries", "soap", "telenovela"],
+    "variety_lines": ["variety", "综艺", "真人秀", "show", "entertainment", "talent"],
+    "sports_lines": ["sports", "体育", "tiyu", "football", "basketball", "tennis"],
+    "news_lines": ["news", "新闻", "xinwen", "时政", "报道", "journal"],
+    "education_lines": ["education", "教育", "jiaoyu", "learn", "study", "course", "school"],
+    "kids_lines": ["kids", "少儿", "child", "children", "cartoon", "动画", "baby"],
+    "documentary_lines": ["documentary", "纪录", "jilu", "doc", "nature", "history"],
+    "anime_lines": ["anime", "动漫", "animation", "卡通", "cartoon", "动画片"],
+    "travel_lines": ["travel", "旅游", "lvyou", "tour", "journey", "adventure"],
+    "food_lines": ["food", "美食", "meishi", "cooking", "cook", "cuisine", "delicious"],
+    "fashion_lines": ["fashion", "时尚", "shishang", "style", "vogue", "beauty"],
+    "tech_lines": ["tech", "科技", "keji", "technology", "digital", "gadget"],
+    "finance_lines": ["finance", "财经", "caijing", "money", "stock", "business"],
+    "auto_lines": ["auto", "汽车", "qiche", "car", "motor", "vehicle"],
+    "health_lines": ["health", "健康", "jiankang", "medical", "fitness", "wellness"],
+    "life_lines": ["life", "生活", "shenghuo", "lifestyle", "home", "family"],
+    "shopping_lines": ["shopping", "购物", "gouwu", "shop", "buy", "sale"],
+    
+    # 地区频道
+    "asia_lines": ["asia", "亚洲", "yazhou", "eastasia", "southeastasia", "southasia"],
+    "europe_lines": ["europe", "欧洲", "ouzhou", "eu", "euro", "western europe"],
+    "africa_lines": ["africa", "非洲", "feizhou", "southafrica", "northafrica"],
+    "america_lines": ["america", "美洲", "meizhou", "northamerica", "southamerica", "latin"],
+    "oceania_lines": ["oceania", "大洋洲", "dayangzhou", "australia", "newzealand", "pacific"],
+}
 
 # 简繁转换
 def traditional_to_simplified(text: str) -> str:
@@ -609,6 +994,239 @@ def correct_name_data(name):
     """纠正频道名称"""
     return corrections_name.get(name, name)
 
+# URL匹配分类
+def match_url_to_category(url):
+    """根据URL匹配频道分类"""
+    url_lower = url.lower()
+    
+    # 主频道
+    if any(kw in url_lower for kw in url_patterns["ys_lines"]):
+        return ys_lines
+    elif any(kw in url_lower for kw in url_patterns["ws_lines"]):
+        return ws_lines
+    elif any(kw in url_lower for kw in url_patterns["ty_lines"]):
+        return ty_lines
+    elif any(kw in url_lower for kw in url_patterns["dy_lines"]):
+        return dy_lines
+    elif any(kw in url_lower for kw in url_patterns["dsj_lines"]):
+        return dsj_lines
+    elif any(kw in url_lower for kw in url_patterns["gat_lines"]):
+        return gat_lines
+    elif any(kw in url_lower for kw in url_patterns["gj_lines"]):
+        return gj_lines
+    elif any(kw in url_lower for kw in url_patterns["jlp_lines"]):
+        return jlp_lines
+    elif any(kw in url_lower for kw in url_patterns["xq_lines"]):
+        return xq_lines
+    elif any(kw in url_lower for kw in url_patterns["js_lines"]):
+        return js_lines
+    elif any(kw in url_lower for kw in url_patterns["newtv_lines"]):
+        return newtv_lines
+    elif any(kw in url_lower for kw in url_patterns["ihot_lines"]):
+        return ihot_lines
+    elif any(kw in url_lower for kw in url_patterns["et_lines"]):
+        return et_lines
+    elif any(kw in url_lower for kw in url_patterns["zy_lines"]):
+        return zy_lines
+    elif any(kw in url_lower for kw in url_patterns["mdd_lines"]):
+        return mdd_lines
+    elif any(kw in url_lower for kw in url_patterns["yy_lines"]):
+        return yy_lines
+    elif any(kw in url_lower for kw in url_patterns["game_lines"]):
+        return game_lines
+    elif any(kw in url_lower for kw in url_patterns["radio_lines"]):
+        return radio_lines
+    elif any(kw in url_lower for kw in url_patterns["zb_lines"]):
+        return zb_lines
+    elif any(kw in url_lower for kw in url_patterns["cw_lines"]):
+        return cw_lines
+    elif any(kw in url_lower for kw in url_patterns["mtv_lines"]):
+        return mtv_lines
+    elif any(kw in url_lower for kw in url_patterns["migu_lines"]):
+        return migu_lines
+        
+    # 国际频道
+    elif any(kw in url_lower for kw in url_patterns["jp_lines"]):
+        return jp_lines
+    elif any(kw in url_lower for kw in url_patterns["kr_lines"]):
+        return kr_lines
+    elif any(kw in url_lower for kw in url_patterns["us_lines"]):
+        return us_lines
+    elif any(kw in url_lower for kw in url_patterns["fr_lines"]):
+        return fr_lines
+    elif any(kw in url_lower for kw in url_patterns["uk_lines"]):
+        return uk_lines
+    elif any(kw in url_lower for kw in url_patterns["de_lines"]):
+        return de_lines
+    elif any(kw in url_lower for kw in url_patterns["ru_lines"]):
+        return ru_lines
+    elif any(kw in url_lower for kw in url_patterns["ca_lines"]):
+        return ca_lines
+    elif any(kw in url_lower for kw in url_patterns["au_lines"]):
+        return au_lines
+    elif any(kw in url_lower for kw in url_patterns["in_lines"]):
+        return in_lines
+    elif any(kw in url_lower for kw in url_patterns["ph_lines"]):
+        return ph_lines
+    elif any(kw in url_lower for kw in url_patterns["sg_lines"]):
+        return sg_lines
+    elif any(kw in url_lower for kw in url_patterns["my_lines"]):
+        return my_lines
+    elif any(kw in url_lower for kw in url_patterns["th_lines"]):
+        return th_lines
+    elif any(kw in url_lower for kw in url_patterns["vn_lines"]):
+        return vn_lines
+    elif any(kw in url_lower for kw in url_patterns["tw_lines"]):
+        return tw_lines
+    elif any(kw in url_lower for kw in url_patterns["hk_lines"]):
+        return hk_lines
+    elif any(kw in url_lower for kw in url_patterns["mo_lines"]):
+        return mo_lines
+        
+    # 地方台
+    elif any(kw in url_lower for kw in url_patterns["sh_lines"]):
+        return sh_lines
+    elif any(kw in url_lower for kw in url_patterns["zj_lines"]):
+        return zj_lines
+    elif any(kw in url_lower for kw in url_patterns["jsu_lines"]):
+        return jsu_lines
+    elif any(kw in url_lower for kw in url_patterns["gd_lines"]):
+        return gd_lines
+    elif any(kw in url_lower for kw in url_patterns["hn_lines"]):
+        return hn_lines
+    elif any(kw in url_lower for kw in url_patterns["ah_lines"]):
+        return ah_lines
+    elif any(kw in url_lower for kw in url_patterns["hain_lines"]):
+        return hain_lines
+    elif any(kw in url_lower for kw in url_patterns["nm_lines"]):
+        return nm_lines
+    elif any(kw in url_lower for kw in url_patterns["hb_lines"]):
+        return hb_lines
+    elif any(kw in url_lower for kw in url_patterns["ln_lines"]):
+        return ln_lines
+    elif any(kw in url_lower for kw in url_patterns["sx_lines"]):
+        return sx_lines
+    elif any(kw in url_lower for kw in url_patterns["shanxi_lines"]):
+        return shanxi_lines
+    elif any(kw in url_lower for kw in url_patterns["shandong_lines"]):
+        return shandong_lines
+    elif any(kw in url_lower for kw in url_patterns["yunnan_lines"]):
+        return yunnan_lines
+    elif any(kw in url_lower for kw in url_patterns["bj_lines"]):
+        return bj_lines
+    elif any(kw in url_lower for kw in url_patterns["cq_lines"]):
+        return cq_lines
+    elif any(kw in url_lower for kw in url_patterns["fj_lines"]):
+        return fj_lines
+    elif any(kw in url_lower for kw in url_patterns["gs_lines"]):
+        return gs_lines
+    elif any(kw in url_lower for kw in url_patterns["gx_lines"]):
+        return gx_lines
+    elif any(kw in url_lower for kw in url_patterns["gz_lines"]):
+        return gz_lines
+    elif any(kw in url_lower for kw in url_patterns["heb_lines"]):
+        return heb_lines
+    elif any(kw in url_lower for kw in url_patterns["hen_lines"]):
+        return hen_lines
+    elif any(kw in url_lower for kw in url_patterns["hlj_lines"]):
+        return hlj_lines
+    elif any(kw in url_lower for kw in url_patterns["jl_lines"]):
+        return jl_lines
+    elif any(kw in url_lower for kw in url_patterns["jx_lines"]):
+        return jx_lines
+    elif any(kw in url_lower for kw in url_patterns["nx_lines"]):
+        return nx_lines
+    elif any(kw in url_lower for kw in url_patterns["qh_lines"]):
+        return qh_lines
+    elif any(kw in url_lower for kw in url_patterns["sc_lines"]):
+        return sc_lines
+    elif any(kw in url_lower for kw in url_patterns["tj_lines"]):
+        return tj_lines
+    elif any(kw in url_lower for kw in url_patterns["xj_lines"]):
+        return xj_lines
+    elif any(kw in url_lower for kw in url_patterns["sichuan_lines"]):
+        return sichuan_lines
+    elif any(kw in url_lower for kw in url_patterns["hebei_lines"]):
+        return hebei_lines
+    elif any(kw in url_lower for kw in url_patterns["hubei_lines"]):
+        return hubei_lines
+    elif any(kw in url_lower for kw in url_patterns["jilin_lines"]):
+        return jilin_lines
+    elif any(kw in url_lower for kw in url_patterns["liaoning_lines"]):
+        return liaoning_lines
+    elif any(kw in url_lower for kw in url_patterns["shanxi1_lines"]):
+        return shanxi1_lines
+    elif any(kw in url_lower for kw in url_patterns["shanxi2_lines"]):
+        return shanxi2_lines
+        
+    # 娱乐类型
+    elif any(kw in url_lower for kw in url_patterns["yl_lines"]):
+        return yl_lines
+    elif any(kw in url_lower for kw in url_patterns["xp_lines"]):
+        return xp_lines
+    elif any(kw in url_lower for kw in url_patterns["xs_lines"]):
+        return xs_lines
+    elif any(kw in url_lower for kw in url_patterns["ak_lines"]):
+        return ak_lines
+    elif any(kw in url_lower for kw in url_patterns["sg_english_lines"]):
+        return sg_english_lines
+        
+    # 专业频道
+    elif any(kw in url_lower for kw in url_patterns["comedy_lines"]):
+        return comedy_lines
+    elif any(kw in url_lower for kw in url_patterns["music_lines"]):
+        return music_lines
+    elif any(kw in url_lower for kw in url_patterns["movie_lines"]):
+        return movie_lines
+    elif any(kw in url_lower for kw in url_patterns["drama_lines"]):
+        return drama_lines
+    elif any(kw in url_lower for kw in url_patterns["variety_lines"]):
+        return variety_lines
+    elif any(kw in url_lower for kw in url_patterns["sports_lines"]):
+        return sports_lines
+    elif any(kw in url_lower for kw in url_patterns["news_lines"]):
+        return news_lines
+    elif any(kw in url_lower for kw in url_patterns["education_lines"]):
+        return education_lines
+    elif any(kw in url_lower for kw in url_patterns["kids_lines"]):
+        return kids_lines
+    elif any(kw in url_lower for kw in url_patterns["documentary_lines"]):
+        return documentary_lines
+    elif any(kw in url_lower for kw in url_patterns["anime_lines"]):
+        return anime_lines
+    elif any(kw in url_lower for kw in url_patterns["travel_lines"]):
+        return travel_lines
+    elif any(kw in url_lower for kw in url_patterns["food_lines"]):
+        return food_lines
+    elif any(kw in url_lower for kw in url_patterns["fashion_lines"]):
+        return fashion_lines
+    elif any(kw in url_lower for kw in url_patterns["tech_lines"]):
+        return tech_lines
+    elif any(kw in url_lower for kw in url_patterns["finance_lines"]):
+        return finance_lines
+    elif any(kw in url_lower for kw in url_patterns["auto_lines"]):
+        return auto_lines
+    elif any(kw in url_lower for kw in url_patterns["health_lines"]):
+        return health_lines
+    elif any(kw in url_lower for kw in url_patterns["life_lines"]):
+        return life_lines
+    elif any(kw in url_lower for kw in url_patterns["shopping_lines"]):
+        return shopping_lines
+        
+    # 地区频道
+    elif any(kw in url_lower for kw in url_patterns["asia_lines"]):
+        return asia_lines
+    elif any(kw in url_lower for kw in url_patterns["europe_lines"]):
+        return europe_lines
+    elif any(kw in url_lower for kw in url_patterns["africa_lines"]):
+        return africa_lines
+    elif any(kw in url_lower for kw in url_patterns["america_lines"]):
+        return america_lines
+    elif any(kw in url_lower for kw in url_patterns["oceania_lines"]):
+        return oceania_lines
+        
+    return None
+
 # 频道处理函数
 def process_channel_line(line):
     """处理单行频道数据"""
@@ -715,6 +1333,12 @@ def process_channel_line(line):
             th_lines.append(line)
         elif channel_name in vn_dictionary:
             vn_lines.append(line)
+        elif channel_name in tw_dictionary:
+            tw_lines.append(line)
+        elif channel_name in hk_dictionary:
+            hk_lines.append(line)
+        elif channel_name in mo_dictionary:
+            mo_lines.append(line)
             
         # 地方台分类
         elif channel_name in sh_dictionary:
@@ -777,6 +1401,20 @@ def process_channel_line(line):
             tj_lines.append(line)
         elif channel_name in xj_dictionary:
             xj_lines.append(line)
+        elif channel_name in sichuan_dictionary:
+            sichuan_lines.append(line)
+        elif channel_name in hebei_dictionary:
+            hebei_lines.append(line)
+        elif channel_name in hubei_dictionary:
+            hubei_lines.append(line)
+        elif channel_name in jilin_dictionary:
+            jilin_lines.append(line)
+        elif channel_name in liaoning_dictionary:
+            liaoning_lines.append(line)
+        elif channel_name in shanxi1_dictionary:
+            shanxi1_lines.append(line)
+        elif channel_name in shanxi2_dictionary:
+            shanxi2_lines.append(line)
             
         # ========== 新增娱乐类型分类 ==========
         elif channel_name in yl_dictionary:
@@ -789,9 +1427,68 @@ def process_channel_line(line):
             ak_lines.append(line)
         elif channel_name in sg_english_dictionary:
             sg_english_lines.append(line)
+            
+        # ========== 新增专业频道分类 ==========
+        elif channel_name in comedy_dictionary:
+            comedy_lines.append(line)
+        elif channel_name in music_dictionary:
+            music_lines.append(line)
+        elif channel_name in movie_dictionary:
+            movie_lines.append(line)
+        elif channel_name in drama_dictionary:
+            drama_lines.append(line)
+        elif channel_name in variety_dictionary:
+            variety_lines.append(line)
+        elif channel_name in sports_dictionary:
+            sports_lines.append(line)
+        elif channel_name in news_dictionary:
+            news_lines.append(line)
+        elif channel_name in education_dictionary:
+            education_lines.append(line)
+        elif channel_name in kids_dictionary:
+            kids_lines.append(line)
+        elif channel_name in documentary_dictionary:
+            documentary_lines.append(line)
+        elif channel_name in anime_dictionary:
+            anime_lines.append(line)
+        elif channel_name in travel_dictionary:
+            travel_lines.append(line)
+        elif channel_name in food_dictionary:
+            food_lines.append(line)
+        elif channel_name in fashion_dictionary:
+            fashion_lines.append(line)
+        elif channel_name in tech_dictionary:
+            tech_lines.append(line)
+        elif channel_name in finance_dictionary:
+            finance_lines.append(line)
+        elif channel_name in auto_dictionary:
+            auto_lines.append(line)
+        elif channel_name in health_dictionary:
+            health_lines.append(line)
+        elif channel_name in life_dictionary:
+            life_lines.append(line)
+        elif channel_name in shopping_dictionary:
+            shopping_lines.append(line)
+            
+        # ========== 新增地区频道分类 ==========
+        elif channel_name in asia_dictionary:
+            asia_lines.append(line)
+        elif channel_name in europe_dictionary:
+            europe_lines.append(line)
+        elif channel_name in africa_dictionary:
+            africa_lines.append(line)
+        elif channel_name in america_dictionary:
+            america_lines.append(line)
+        elif channel_name in oceania_dictionary:
+            oceania_lines.append(line)
         else:
-            # 添加到"其他"分类
-            other_lines.append(line)
+            # 名称匹配失败，尝试URL匹配
+            target_list = match_url_to_category(channel_address)
+            if target_list is not None:
+                target_list.append(line)
+            else:
+                # 添加到"其他"分类
+                other_lines.append(line)
 
 # 处理URL源
 def process_url(url):
@@ -920,6 +1617,9 @@ add_category("新加坡频道", sg_lines, sg_dictionary)
 add_category("马来西亚频道", my_lines, my_dictionary)
 add_category("泰国频道", th_lines, th_dictionary)
 add_category("越南频道", vn_lines, vn_dictionary)
+add_category("台湾频道", tw_lines, tw_dictionary)
+add_category("香港频道", hk_lines, hk_dictionary)
+add_category("澳门频道", mo_lines, mo_dictionary)
 
 add_category("纪录片", jlp_lines, jlp_dictionary)
 add_category("戏曲频道", xq_lines, xq_dictionary)
@@ -955,6 +1655,13 @@ add_category("青海频道", qh_lines)
 add_category("四川频道", sc_lines)
 add_category("天津频道", tj_lines)
 add_category("新疆频道", xj_lines)
+add_category("四川地方台", sichuan_lines, sichuan_dictionary)
+add_category("河北地方台", hebei_lines, hebei_dictionary)
+add_category("湖北地方台", hubei_lines, hubei_dictionary)
+add_category("吉林地方台", jilin_lines, jilin_dictionary)
+add_category("辽宁地方台", liaoning_lines, liaoning_dictionary)
+add_category("陕西地方台", shanxi1_lines, shanxi1_dictionary)
+add_category("山西地方台", shanxi2_lines, shanxi2_dictionary)
 
 add_category("春晚", cw_lines, cw_dictionary)
 add_category("直播中国", zb_lines)
@@ -967,6 +1674,35 @@ add_category("小品天地", xp_lines, xp_dictionary)
 add_category("相声精选", xs_lines, xs_dictionary)
 add_category("AKtv频道", ak_lines, ak_dictionary)
 add_category("新加坡英语", sg_english_lines, sg_english_dictionary)
+
+# ========== 添加新增专业频道分类 ==========
+add_category("喜剧频道", comedy_lines, comedy_dictionary)
+add_category("音乐频道", music_lines, music_dictionary)
+add_category("电影频道", movie_lines, movie_dictionary)
+add_category("电视剧频道", drama_lines, drama_dictionary)
+add_category("综艺频道", variety_lines, variety_dictionary)
+add_category("体育频道", sports_lines, sports_dictionary)
+add_category("新闻频道", news_lines, news_dictionary)
+add_category("教育频道", education_lines, education_dictionary)
+add_category("少儿频道", kids_lines, kids_dictionary)
+add_category("纪录片频道", documentary_lines, documentary_dictionary)
+add_category("动漫频道", anime_lines, anime_dictionary)
+add_category("旅游频道", travel_lines, travel_dictionary)
+add_category("美食频道", food_lines, food_dictionary)
+add_category("时尚频道", fashion_lines, fashion_dictionary)
+add_category("科技频道", tech_lines, tech_dictionary)
+add_category("财经频道", finance_lines, finance_dictionary)
+add_category("汽车频道", auto_lines, auto_dictionary)
+add_category("健康频道", health_lines, health_dictionary)
+add_category("生活频道", life_lines, life_dictionary)
+add_category("购物频道", shopping_lines, shopping_dictionary)
+
+# ========== 添加新增地区频道分类 ==========
+add_category("亚洲频道", asia_lines, asia_dictionary)
+add_category("欧洲频道", europe_lines, europe_dictionary)
+add_category("非洲频道", africa_lines, africa_dictionary)
+add_category("美洲频道", america_lines, america_dictionary)
+add_category("大洋洲频道", oceania_lines, oceania_dictionary)
 
 # 添加其他频道分类（如果有内容）
 if other_lines:
@@ -1027,5 +1763,7 @@ print(f"港澳台频道: {len(gat_lines)}")
 print(f"国际频道: {len(jp_lines)+len(kr_lines)+len(us_lines)+len(fr_lines)+len(uk_lines)}")
 print(f"地方频道: {len(sh_lines)+len(zj_lines)+len(gd_lines)}")
 print(f"娱乐频道: {len(yl_lines)+len(xp_lines)+len(xs_lines)+len(ak_lines)}")
+print(f"专业频道: {len(comedy_lines)+len(music_lines)+len(movie_lines)}")
+print(f"地区频道: {len(asia_lines)+len(europe_lines)+len(africa_lines)}")
 print(f"其他频道: {len(other_lines)}")
 print(f"总频道数: {len(all_lines)}")
